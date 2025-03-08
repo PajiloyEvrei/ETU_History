@@ -1,55 +1,85 @@
 
 @font-face {
-	font-family: kamerik-3d;
-	src: url(../fonts/kamerik205-heavy.woff2);
-	font-weight: 900;
+	font-family: AvenirNextLTPro-Bold;
+	src: url(../fonts/AvenirNextLTPro-Bold.ttf);
+}
+
+@font-face {
+	font-family: AvenirLTProBlack;
+	src: url(../fonts/AvenirLTProBlack.otf);
 }
 @font-face {
-	font-family: merriweather-italic-3d;
-	src: url(../fonts/merriweather-regular-italic.woff2);
+	font-family: AvenirLTProBook;
+	src: url(../fonts/AvenirLTProBook.otf);
 }
+@font-face {
+	font-family: AvenirLTProHeavy;
+	src: url(../fonts/AvenirLTProHeavy.otf);
+}
+@font-face {
+	font-family: AvenirLTProLight;
+	src: url(../fonts/AvenirLTProLight.otf);
+}
+@font-face {
+	font-family: AvenirLTProMedium;
+	src: url(../fonts/AvenirLTProMedium.otf);
+}
+@font-face {
+	font-family: AvenirLTProRoman;
+	src: url(../fonts/AvenirLTProRoman.otf);
+}
+
+@font-face {
+	font-family: Industry-Bold_RUS;
+	src: url(../fonts/Industry-Bold_RUS.ttf);
+}
+@font-face {
+	font-family: AvenirLTProHeavy;
+	src: url(../fonts/AvenirLTProHeavy.otf);
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+	position: sticky;
+}
+
 body {
-	background-color: white;
+	background-color: rgb(30, 30, 30);
 	color: black;
-	font-family: kamerik-3d;
-}
-
-.block {
-  font-size: 30px;
-  border: 1px solid #242322;
-  margin-left: 10px;
-  margin-right: 10px;
-  height: 30px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
-
-.block_menu {
-	height: 30px;
-  font-size: 30px;
-  border: 1px solid #242322;
-}
-
-.periods {
-	height: 80px;
-	width: 11%;
-}
-
-.row {
-  margin-left: 15%;
-  margin-right: 15%;
-  width: 70%;
-  text-align: center;
+	font-family: "AvenirLTProMedium";
 }
 
 .menu {
-	width: 100px;
+	margin: auto;
+	position: sticky;
+	height: 30px;
+	width: 540px;
+  font-size: 20px;
+  border: 1px solid #242322;
+}
+
+.menu_block {
+	width: 180px;
+	text-align: center;
+}
+
+.row {
+  display: flex;  
+  flex-direction: row;
+  text-align: center;
 }
 
 .logo {
 	width: 100px;
 	height: 100px;
-	display: inline-block;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 20px;
+	margin-top: 10px;
 }
 
 .main {
@@ -57,25 +87,52 @@ body {
 	margin-left: 10%;
   margin-right: 10%;
 	height: 900px;
-	background-color: pink;
+	background-color: white;
 	text-align: center;
 }
 
 .row_block {
-	display: inline-block;
+	display: inline;
   border: 1px solid black;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  width: 11%;
+  height: 20px;
   padding: 10px;
   color: white;
+  font-size: 18px;
 }
 
-.left {
-	border-top-left-radius: 50%;
-	border-bottom-left-radius: 50%;
+#invisibleTriggerProgress {
+	position: fixed;
+	background-color: black;
+	height: 40px;
+	width: 1440px;
+	opacity: 0.3;
 }
 
-.right {
-	border-top-right-radius: 50%;
-	border-bottom-right-radius: 50%;
+#progressBar {
+	max-width: 1440px;
+	font-size: 18px;
+	position: -webkit-sticky;
+	position: sticky;
+  top: 10px;
+  margin: auto;
+  height: auto;
+  max-height: 5px;
+  overflow: hidden;
+  transition: max-height 1.5s;
 }
+
+#progressBar:hover {
+  max-height: 40px;
+}
+
+#title {
+	color: rgb(149, 126, 94);
+	font-size: 30px;
+	font-family: Industry-Bold_RUS;
+	display: block;
+	text-align: center;
+	width: auto;
+	margin: auto;
+}
+

@@ -7,22 +7,23 @@
 	<title>Главная</title>
 	<link rel="stylesheet" href="css/main.css">
 	<!-- Эффекты -->
-	<script src="js/model.js" defer></script>
+	<script src="js/bar.js" defer></script>
 </head>
 <body>
 
-  	<div class="row portal">
-
-        <nav class="row block_menu" style="background-color: #05336E">
-          <img class ="row_block logo left" src="img/logo-etu.png"><!--
-          --><a class="row_block menu">Главная</a><!--
-          --><a class="row_block menu">Текст</a><!--
-          --><a class="row_block menu">О нас</a><!--
-          --><a class="row_block menu right"></a><!--
+  	<div class="portal">
+        <img class ="logo" src="img/logo-etu.png">
+        <div id = "title">ЛЭТИ <br> сквозь историю</div>
+        <nav class="row menu" style="background-color: #05336E"><!--
+          --><a class="menu_block left">Главная</a><!--
+          --><a class="menu_block">Текст</a><!--
+          --><a class="menu_block">О нас</a><!--
+          --><a class="menu_block right"></a><!--
         --></nav>
 
-        <nav class="row block-menu periods">
-          <a class="row_block left" style="background-color: #AD7B3C">1886-1891</a><!--
+        <div class="row periods"  id="progressBar">
+          <div id="invisibleTriggerProgress" onmouseover="mOver()" onmouseout="mOut()" ></div>
+          <a class="row_block left" style="background-color: #AD7B3C" >1886-1891</a><!--
           --><a class="row_block" style="background-color: #AD7B3C">1891-1899</a><!--
           --><a class="row_block" style="background-color: #AD7B3C">1899-1918</a><!--
           --><a class="row_block" style="background-color: #A10000">1918-1929</a><!--
@@ -31,13 +32,13 @@
           --><a class="row_block" style="background-color: #A10000">1945-1968</a><!--
           --><a class="row_block" style="background-color: #A10000">1968-1992</a><!--
           --><a class="row_block right" style="background-color: #05336E">1992-X</a><!--
-        --></nav>
+        --></div>
 
     </div>
     <div class="main">
 
         <div class="model">
-        	3Д МОДЕЛЬ_
+        	3Д МОДЕЛЬ
         </div>
 
 
