@@ -1,0 +1,81 @@
+
+@font-face {
+	font-family: kamerik-3d;
+	src: url(../fonts/kamerik205-heavy.woff2);
+	font-weight: 900;
+}
+@font-face {
+	font-family: merriweather-italic-3d;
+	src: url(../fonts/merriweather-regular-italic.woff2);
+}
+body {
+	background-color: white;
+	color: black;
+	font-family: kamerik-3d;
+}
+
+.block {
+  font-size: 30px;
+  border: 1px solid #242322;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 30px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.block_menu {
+	height: 30px;
+  font-size: 30px;
+  border: 1px solid #242322;
+}
+
+.periods {
+	height: 80px;
+	width: 11%;
+}
+
+.row {
+  margin-left: 15%;
+  margin-right: 15%;
+  width: 70%;
+  text-align: center;
+}
+
+.menu {
+	width: 100px;
+}
+
+.logo {
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+}
+
+.main {
+	width: 80%;
+	margin-left: 10%;
+  margin-right: 10%;
+	height: 900px;
+	background-color: pink;
+	text-align: center;
+}
+
+.row_block {
+	display: inline-block;
+  border: 1px solid black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  color: white;
+}
+
+.left {
+	border-top-left-radius: 50%;
+	border-bottom-left-radius: 50%;
+}
+
+.right {
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
+}
