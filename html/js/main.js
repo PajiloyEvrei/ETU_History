@@ -1,0 +1,52 @@
+let BAR_SCALE = 0;
+
+function setBarScale(scale){
+    BAR_SCALE = scale;
+    if(BAR_SCALE < 4){
+        document.getElementById("progressBar").style.background = "#AD7B3C";
+        document.body.style.color = "#AD7B3C"
+        //document.body.style.backgroundColor = "rgb(30, 30, 30)"
+        document.getElementById("logo").src = "img/logo-etu_brown.png"
+    } else if (BAR_SCALE == 9){
+        document.getElementById("progressBar").style.background = "#05336E";
+        document.body.style.color = "#05336E"
+        //document.body.style.backgroundColor = "#D9D9D9"
+        document.getElementById("logo").src = "img/logo-etu_blue.png";
+    } else{
+        document.getElementById("progressBar").style.background = "#A10000";
+        document.body.style.color = "#A10000"
+        //document.body.style.backgroundColor = "rgb(220, 220, 0)"
+        document.getElementById("logo").src = "img/logo-etu_red.png";
+    }
+}
+
+var elem = document.getElementById('mainFrame');
+
+if (elem.addEventListener) {
+  if ('onwheel' in document) {
+    // IE9+, FF17+, Ch31+
+    elem.addEventListener("wheel", onWheel);
+  } else if ('onmousewheel' in document) {
+    // устаревший вариант события
+    elem.addEventListener("mousewheel", onWheel);
+  } else {
+    // Firefox < 17
+    elem.addEventListener("MozMousePixelScroll", onWheel);
+  }
+} else { // IE8-
+  elem.attachEvent("onmousewheel", onWheel);
+}
+
+
+function onWheel(e) {
+  e = e || window.event;
+
+  // wheelDelta не даёт возможность узнать количество пикселей
+  var delta = e.deltaY || e.detail || e.wheelDelta;
+
+  var info = document.getElementById('logoText');
+
+  info.innerHTML = info.innerHTML + delta;
+
+  e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+}
