@@ -103,6 +103,14 @@ canvas {
 	opacity: 1;
 }
 
+#progressBarLine {
+	position: fixed;
+	background-color: white;
+	height: 40px;
+	width: 0px;
+	opacity: 1;
+}
+
 #progressBar {
 	color: white;
 	max-width: 1540px;
@@ -198,9 +206,6 @@ canvas {
 
 #aboutButton {
 	text-transform: uppercase;
-	height: 100%;
-	width: 200px;
-	text-align: center;
 	color: body.color;
 }
 

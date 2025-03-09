@@ -10,8 +10,8 @@
 </head>
 <header>
    
-      <div id="aboutButton">
-        <a onclick="document.getElementById('about').style.maxWidth = '500px'">Информация</a>
+      <div style="  height: 100%; width: 200px; text-align: center;">
+        <a id="aboutButton" onclick="document.getElementById('about').style.maxWidth = '500px'">Информация</a>
       </div>
 
       <div style="margin: auto">
@@ -27,6 +27,7 @@
 </header>
 <body>
       <div class="row periods"  id="progressBar" style="background-color: #AD7B3C">
+        <div id="progressBarLine"></div>
         <div id="invisibleTriggerProgress"></div>
         <a class="row_block period left" onclick="setBarScale(1)" >1886-1891</a><!--
         --><a class="row_block period" onclick="setBarScale(2)" >1891-1899</a><!--

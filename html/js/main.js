@@ -2,6 +2,15 @@ let BAR_SCALE = 0;
 
 function setBarScale(scale){
     BAR_SCALE = scale;
+    scalingBar()
+}
+
+function scalingBar(){
+    if (BAR_SCALE > 9){
+      BAR_SCALE = 9
+    } else if (BAR_SCALE < 0){
+      BAR_SCALE = 0
+    }
     if(BAR_SCALE < 4){
         document.getElementById("progressBar").style.background = "#AD7B3C";
         document.body.style.color = "#AD7B3C"
@@ -18,9 +27,11 @@ function setBarScale(scale){
         //document.body.style.backgroundColor = "rgb(220, 220, 0)"
         document.getElementById("logo").src = "img/logo-etu_red.png";
     }
+    document.getElementById("progressBarLine").style.width = `${171 * BAR_SCALE}px`;
 }
 
-var elem = document.getElementById('mainFrame');
+let elem = document.getElementById('mainFrame');
+let wheel = 0;
 
 if (elem.addEventListener) {
   if ('onwheel' in document) {
@@ -45,8 +56,16 @@ function onWheel(e) {
   var delta = e.deltaY || e.detail || e.wheelDelta;
 
   var info = document.getElementById('logoText');
-
-  info.innerHTML = info.innerHTML + delta;
+  wheel+=delta
+  if (wheel > 100) {
+    BAR_SCALE+=0.5
+    wheel = 0
+  } else if (wheel < -100){
+    BAR_SCALE-=0.5
+    wheel = 0
+  }
+  scalingBar()
+  info.innerHTML = wheel;
 
   e.preventDefault ? e.preventDefault() : (e.returnValue = false);
 }
