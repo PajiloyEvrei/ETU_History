@@ -3,7 +3,6 @@
 	font-family: AvenirNextLTPro-Bold;
 	src: url(../fonts/AvenirNextLTPro-Bold.ttf);
 }
-
 @font-face {
 	font-family: AvenirLTProBlack;
 	src: url(../fonts/AvenirLTProBlack.otf);
@@ -28,7 +27,6 @@
 	font-family: AvenirLTProRoman;
 	src: url(../fonts/AvenirLTProRoman.otf);
 }
-
 @font-face {
 	font-family: Industry-Bold_RUS;
 	src: url(../fonts/Industry-Bold_RUS.ttf);
@@ -46,10 +44,19 @@ nav {
 	position: sticky;
 }
 
+header {
+	display: flex;
+}
+
 body {
 	background-color: rgb(30, 30, 30);
 	color: black;
 	font-family: "AvenirLTProMedium";
+}
+
+canvas {
+	width: 100%;
+	height: 100%;
 }
 
 .menu {
@@ -72,28 +79,9 @@ body {
   text-align: center;
 }
 
-.logo {
-	width: 100px;
-	height: 100px;
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
-	margin-bottom: 20px;
-	margin-top: 10px;
-}
-
-.main {
-	width: 80%;
-	margin-left: 10%;
-  margin-right: 10%;
-	height: 900px;
-	background-color: white;
-	text-align: center;
-}
-
 .row_block {
 	display: inline;
-  border: 1px solid black;
+  border-right: 1px dashed white;
   width: 11%;
   height: 20px;
   padding: 10px;
@@ -101,20 +89,22 @@ body {
   font-size: 18px;
 }
 
+.right{
+	border-right: 0px;
+}
+
 #invisibleTriggerProgress {
 	position: fixed;
-	background-color: black;
 	height: 40px;
-	width: 1440px;
-	opacity: 0.3;
+	width: 1540px;
+	opacity: 1;
 }
 
 #progressBar {
-	max-width: 1440px;
+	max-width: 1540px;
 	font-size: 18px;
 	position: -webkit-sticky;
 	position: sticky;
-  top: 10px;
   margin: auto;
   height: auto;
   max-height: 5px;
@@ -128,11 +118,35 @@ body {
 
 #title {
 	color: rgb(149, 126, 94);
-	font-size: 30px;
+	font-size: 24px;
 	font-family: Industry-Bold_RUS;
-	display: block;
-	text-align: center;
-	width: auto;
-	margin: auto;
+	text-align: right;
+	width: 322;
+	margin-right: 50px;
 }
 
+#logo {
+	max-width: 75px;
+	max-height: 75px;
+	display: inline-block;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 10px;
+}
+
+#logoText{
+	position: relative;
+	bottom: 20px;
+	text-align: center;
+	display: inline-block;
+}
+
+#mainFrame{
+	border-radius: 1%;
+	position: fixed;
+	top: 115px;
+	z-index: -1;
+	width: 99%;
+	height: 90%;
+	background-color: black;
+}
