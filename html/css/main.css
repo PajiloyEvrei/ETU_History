@@ -80,15 +80,15 @@ canvas {
 }
 
 .row_block {
-	display: inline;
+	display: inline-block;
 }
 
 .period {
-	width: 11%;
+	width: 151px;
+	margin: auto;
   border-right: 1px dashed rgba(255, 255, 255, 0.5);
   height: 20px;
   padding: 10px;
-  font-size: 18px;
 }
 
 .right{
@@ -105,10 +105,14 @@ canvas {
 
 #progressBarLine {
 	position: fixed;
-	background-color: white;
-	height: 40px;
+	background-color: whitesmoke;
+	color: black;
+	margin: auto;
+  max-height: 5px;
 	width: 0px;
-	opacity: 1;
+	overflow: hidden;
+	transition: max-height 1.5s, width 1s;
+	white-space: nowrap;
 }
 
 #progressBar {
@@ -118,13 +122,12 @@ canvas {
 	position: -webkit-sticky;
 	position: sticky;
   margin: auto;
-  height: auto;
   max-height: 5px;
   overflow: hidden;
   transition: max-height 1.5s, background 1s;
 }
 
-#progressBar:hover {
+#progressBar:hover, #progressBarLine:hover {
   max-height: 40px;
   cursor: pointer;
 }
@@ -173,7 +176,7 @@ canvas {
 	background-color: whitesmoke;
 	max-width: 0px;
 	overflow: hidden;
-	transition: max-width 1s;
+	transition: max-width 1.5s;
 }
 
 .blocks_inner{
