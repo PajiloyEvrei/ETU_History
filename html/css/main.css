@@ -100,7 +100,6 @@ canvas {
 	position: fixed;
 	height: 40px;
 	width: 1540px;
-	opacity: 1;
 }
 
 #progressBarLine {
@@ -138,6 +137,8 @@ canvas {
 	text-align: right;
 	width: 322;
 	margin-right: 50px;
+	border-left: 1px dashed rgba(255, 255, 255, 0.3);
+	padding-left: 10px;
 }
 
 #logo {
@@ -210,6 +211,7 @@ canvas {
 #aboutButton {
 	text-transform: uppercase;
 	color: body.color;
+	margin: auto;
 }
 
 #aboutButton:hover {

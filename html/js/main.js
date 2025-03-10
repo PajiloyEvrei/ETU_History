@@ -55,7 +55,6 @@ function onWheel(e) {
   // wheelDelta не даёт возможность узнать количество пикселей
   var delta = e.deltaY || e.detail || e.wheelDelta;
 
-  var info = document.getElementById('logoText');
   wheel+=delta
   if (wheel > 150) {
     BAR_SCALE+=0.5
@@ -65,7 +64,6 @@ function onWheel(e) {
     wheel = 0
   }
   scalingBar()
-  info.innerHTML = wheel;
 
   e.preventDefault ? e.preventDefault() : (e.returnValue = false);
 }
