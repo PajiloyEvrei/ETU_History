@@ -46,7 +46,7 @@ nav {
 
 header {
 	display: flex;
-	height: 91px;
+	height: 80px;
 }
 
 body {
@@ -160,7 +160,7 @@ canvas {
 #mainFrame {
 	border-radius: 1%;
 	position: fixed;
-	top: 115px;
+	top: 100px;
 	z-index: -1;
 	width: 99%;
 	height: 90%;

@@ -14,17 +14,17 @@ function scalingBar(){
     if(BAR_SCALE < 3){
         document.getElementById("progressBar").style.background = "#AD7B3C";
         document.body.style.color = "#AD7B3C"
-        //document.body.style.backgroundColor = "rgb(30, 30, 30)"
+        document.body.style.backgroundColor = "rgb(30, 30, 30)"
         document.getElementById("logo").src = "img/logo-etu_brown.png"
     } else if (BAR_SCALE >= 8){
         document.getElementById("progressBar").style.background = "#05336E";
         document.body.style.color = "#05336E"
-        //document.body.style.backgroundColor = "#D9D9D9"
+        document.body.style.backgroundColor = "#D9D9D9"
         document.getElementById("logo").src = "img/logo-etu_blue.png";
     } else{
-        document.getElementById("progressBar").style.background = "#A10000";
-        document.body.style.color = "#A10000"
-        //document.body.style.backgroundColor = "rgb(220, 220, 0)"
+        document.getElementById("progressBar").style.background = "rgb(211,40,40)";
+        document.body.style.color = "rgb(211,40,40)"
+        document.body.style.backgroundColor = "rgb(46, 52, 64)"
         document.getElementById("logo").src = "img/logo-etu_red.png";
     }
     document.getElementById("progressBarLine").style.width = `${171.1 * BAR_SCALE}px`;
