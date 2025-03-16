@@ -7,7 +7,7 @@
 	<title>Главная</title>
 	<link rel="stylesheet" href="css/main.css">
 	<!-- Эффекты -->
-  <script src="js/app.js" defer></script>
+
 </head>
 <header>
    
@@ -55,8 +55,9 @@
         --><a class="row_block period right" onclick="setBarScale(8)" >1992-X</a><!--
       --></div>
       
-      <div> <canvas id="mainFrame"> </canvas>
-    </div>
+       <canvas id="mainFrame" onmousemove="document.getElementById('logoText').innerHTML=event.clientX+':'+event.clientY"> </canvas>
+
+        <div style = "width: 1px; height: 1px; position: fixed; top: 50%; left: 50%;" id = "center"> </div>
 
 </body>
 
@@ -87,6 +88,6 @@
 
   </div>
 </aside>
-
+<script src="js/app.js" defer></script>
 <script src="js/main.js"></script>
 </html>

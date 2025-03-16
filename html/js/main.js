@@ -67,12 +67,31 @@ function onWheel(e) {
 
   e.preventDefault ? e.preventDefault() : (e.returnValue = false);
 }
-
+/*
 let mainFrame = document.getElementById("mainFrame");
 let context = mainFrame.getContext("2d");
 let img = new Image(); // Создаёт новый элемент изображения
-img.src = "SPB_yellow_map_1882.png";
+img.src = "img/SPB_yellow_map_1882.png";
 
 img.onload = () => {
-  context.drawImage(img,0,0);
+  context.drawImage(img,0,0, 2088, 1740,-100,-100,2088, 1740);
 }
+
+
+let mainFrame = document.getElementById("mainFrame");
+
+let pic = i => `https://picsum.photos/id/${i}/100/100`
+
+let images = [pic(33), pic(44), pic(55), pic(66), pic(77)];
+
+images = images.map((src, i) => {
+  let img = new Image();
+  img.src = src;
+  img.onload = e => draw(i);
+  return img ;
+});
+
+function draw(index){
+  ctx.drawImage(images[index], index * 110, Math.random()*75)
+}
+*/ 

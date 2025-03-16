@@ -5,54 +5,94 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Информация</title>
-	<link rel="stylesheet" href="css/info.css">
-	<script src="js/app-slow.js" defer></script>
 </head>
 <body>
-	<!-- Фон -->
-	<section class="layers">
-		<div class="layers__container">
-			<!-- Основной слой -->
-			<div class="layers__item layer-space" style="background-image: url(img/space.jpg);"></div>
-			<!-- Основной слой -->
-			
+	<canvas id="canvas" width="300px" height="300px"></canvas>
 
-			<div class="layers__item layer-3">
-				<div class="hero-content">
-					<h1>Space Sofa<span></span></h1>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Конец фона -->
+	<script>
+		const canvas = document.getElementById('canvas');
+		const ctx = canvas.getContext("2d");
+		const image = new Image();
+		image.src = 'img/logo-etu_brown.png';
 
-	<section class="main-content">
-		<div class="window">
-            <div class="line-box">
-                <hr class="line1">
-                <hr class="line2">
-                <div class="content">
-                    <div class="text-head">Информация</div>
-                    <div class="text-info"> Мы стоим в  девяти километрах от передовой. Вчера  нас сменили;  сейчас
-                        наши желудки  набиты фасолью с мясом, и все мы ходим сытые и довольные. Даже
-                        на ужин каждому досталось по полному котелку; сверх того мы получаем двойную
-                        порцию хлеба и колбасы, - словом, живем неплохо. Такого с нами давненько уже
-                        не  случалось: наш кухонный бог со своей  багровой, как помидор, лысиной сам
-                        предлагает  нам  поесть  еще;  он  машет  черпаком,  зазывая  проходящих,  и
-                        отваливает  им здоровенные порции. Он все никак не опорожнит свой "пищемет",
-                        и это приводит его в отчаяние. Тьяден и Мюллер раздобыли откуда-то несколько
-                        тазов и наполнили их до краев - про запас.  Тьяден сделал это из  обжорства,
-                        Мюллер - из осторожности. Куда девается все,  что съедает Тьяден, - для всех
-                        нас загадка. Он все равно остается тощим, как селедка.</div>
-                </div>
-            </div>
+		requestAnimationFrame(drawCanvas);
 
-        </div>
-    <button class="next">
-        <a href="main.html" target="_blank" class="main" itemprop="url">
-        Продолжить
-    </a></button>
+		let matrix = [1, 0, 0, 1, 0, 0];
+		let scale = 1;
+		const pos = { x: 0, y: 0 };
+		let dirty = true;
+		const mouse = {x: 0, y: 0, oldX: 0, oldY: 0, dragging: false};
 
+		canvas.addEventListener("mousemove", mouseEvent, {passive: true});
+		canvas.addEventListener("mousedown", mouseEvent, {passive: true});
+		canvas.addEventListener("mouseup", mouseEvent, {passive: true});
+		canvas.addEventListener("mouseout", mouseEvent, {passive: true});
+		canvas.addEventListener("wheel", mouseWheelEvent, {passive: false});
+
+		function apply() {
+		    if (dirty)
+		        update();
+		    ctx.setTransform(matrix[0], matrix[1], matrix[2], matrix[3], matrix[4], matrix[5]);
+		}
+
+		function update() {
+		    dirty = false;
+		    matrix[3] = matrix[0] = scale;
+		    matrix[2] = matrix[1] = 0;
+		    matrix[4] = pos.x;
+		    matrix[5] = pos.y;
+		}
+
+		function pan(amount) {
+		    if (dirty)
+		        update();
+		    pos.x += amount.x;
+		    pos.y += amount.y;
+		    dirty = true;
+		}
+
+		function scaleAt(at, amount) {
+		    if (dirty)
+		        update();
+		    scale *= amount;
+		    pos.x = at.x - (at.x - pos.x) * amount;
+		    pos.y = at.y - (at.y - pos.y) * amount;
+		    dirty = true;
+		}
+
+		function drawCanvas() {
+		    if (dirty) {
+		        ctx.setTransform(1, 0, 0, 1, 0, 0);
+		        ctx.clearRect(0, 0, canvas.width, canvas.height);
+		        apply();
+		        ctx.drawImage(image, 0, 0);
+		    }
+		    requestAnimationFrame(drawCanvas);
+		}
+
+		function mouseEvent(e) {
+		    if (e.type === "mousedown")
+		        mouse.dragging = true;
+		    if (e.type === "mouseup" || e.type === "mouseout")
+		        mouse.dragging = false;
+		    mouse.oldX = mouse.x;
+		    mouse.oldY = mouse.y;
+		    mouse.x = e.offsetX;
+		    mouse.y = e.offsetY
+		    if (mouse.dragging)
+		        pan({x: mouse.x - mouse.oldX, y: mouse.y - mouse.oldY});
+		}
+
+		function mouseWheelEvent(e) {
+		    let x = e.offsetX;
+		    let y = e.offsetY;
+		    if (e.deltaY < 0)
+		        scaleAt({x, y}, 1.1);
+		    else
+		        scaleAt({x, y}, 1 / 1.1);
+		    e.preventDefault();
+		}
+	</script>
 </body>
 </html>
 
