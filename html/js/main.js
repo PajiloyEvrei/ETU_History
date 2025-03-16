@@ -67,3 +67,12 @@ function onWheel(e) {
 
   e.preventDefault ? e.preventDefault() : (e.returnValue = false);
 }
+
+let mainFrame = document.getElementById("mainFrame");
+let context = mainFrame.getContext("2d");
+let img = new Image(); // Создаёт новый элемент изображения
+img.src = "SPB_yellow_map_1882.png";
+
+img.onload = () => {
+  context.drawImage(img,0,0);
+}
