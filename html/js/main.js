@@ -67,6 +67,33 @@ function onWheel(e) {
 
   e.preventDefault ? e.preventDefault() : (e.returnValue = false);
 }
+
+let line = document.getElementById('invisibleTriggerProgress');
+let bar = document.getElementById('progressBar');
+let bar2 = document.getElementById('progressBarLine');
+
+
+bar.addEventListener("mouseover", lineBaR);
+bar.addEventListener("mouseout", lineBaR);
+bar2.addEventListener("mouseover", lineBaR);
+bar2.addEventListener("mouseout", lineBaR);
+line.addEventListener("mouseover", lineBaR);
+line.addEventListener("mouseout", lineBaR);
+
+function lineBaR(e) {
+    if (e.type === "mouseover"){
+       document.getElementById('progressBar').style.maxHeight = '40px';
+       document.getElementById('progressBarLine').style.maxHeight = '40px';
+    } 
+    if (e.type === "mouseout"){
+       document.getElementById('progressBar').style.maxHeight = '5px';
+       document.getElementById('progressBarLine').style.maxHeight = '5px';
+    }
+}
+
+
+
+
 /*
 let mainFrame = document.getElementById("mainFrame");
 let context = mainFrame.getContext("2d");

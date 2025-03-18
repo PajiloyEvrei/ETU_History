@@ -35,7 +35,10 @@
 	font-family: AvenirLTProHeavy;
 	src: url(../fonts/AvenirLTProHeavy.otf);
 }
-
+@font-face {
+	font-family: Roboto;
+	src: url(../fonts/RobotoCondensed-VariableFont_wght.ttf);
+}
 a {
   text-decoration: none;
 }
@@ -52,7 +55,7 @@ header {
 body {
 	background-color: rgb(30, 30, 30);
 	color: rgb(149, 126, 94);
-	font-family: "AvenirLTProMedium";
+	font-family: "Roboto";
 	transition: color 1s, background-color 1s;
 }
 canvas {
@@ -127,7 +130,7 @@ canvas {
 }
 
 #progressBar:hover, #progressBarLine:hover {
-  max-height: 40px;
+  /*max-height: 40px;*/
   cursor: pointer;
 }
 
@@ -168,7 +171,7 @@ canvas {
 }
 
 #about {
-	font-family: AvenirNextLTPro-Bold;
+	font-family: "Roboto";
 	white-space: nowrap;
 	position: fixed;
 	color: black;
@@ -224,9 +227,10 @@ canvas {
 	left: 10%;
 	top: 20%;
 	background-color: rgba(0, 0, 0, 0.4);
-	border-radius: 10%;
+	border-radius: 1%;
 	color: white;
 	font-size: 40px;
 	text-align: center;
 	padding: 30px;
+	font-family: "Roboto";
 }

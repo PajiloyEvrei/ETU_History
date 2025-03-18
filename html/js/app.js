@@ -26,7 +26,6 @@ canvas.addEventListener("mouseover", mouseEvent, {passive: true});
 canvas.addEventListener("mousedown", mouseEvent, {passive: true});
 canvas.addEventListener("mouseup", mouseEvent, {passive: true});
 canvas.addEventListener("mouseout", mouseEvent, {passive: true});
-canvas.addEventListener("wheel", mouseWheelEvent, {passive: false});
 
 function apply() {
     if (dirty)
