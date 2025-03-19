@@ -5,12 +5,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Главная</title>
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/index.css">
 	<!-- Эффекты -->
 
 </head>
 <header>
-   
+
       <div style="  height: 40px; width: 150px; text-align: center; padding: 20px; border-right: 1px dashed rgba(255, 255, 255, 0.3);">
         <a id="aboutButton" onclick="document.getElementById('about').style.maxWidth = '500px'">Информация</a>
       </div>
@@ -29,32 +29,7 @@
 
 </header>
 <body>
-      <div class="row periods"  id="progressBar" style="background-color: #AD7B3C">
-        <div id="invisibleTriggerProgress"></div>
-        <div id="progressBarLine" class="row periods"><!--
-          --><div><!--
-          --><a class="row_block period left" onclick="setBarScale(0)" >1886-1891</a><!--
-        --><a class="row_block period" onclick="setBarScale(1)" >1891-1899</a><!--
-        --><a class="row_block period" onclick="setBarScale(2)" >1899-1918</a><!--
-        --><a class="row_block period" onclick="setBarScale(3)" >1918-1929</a><!--
-        --><a class="row_block period" onclick="setBarScale(4)" >1929-1941</a><!--
-        --><a class="row_block period" onclick="setBarScale(5)" >1941-1945</a><!--
-        --><a class="row_block period" onclick="setBarScale(6)" >1945-1968</a><!--
-        --><a class="row_block period" onclick="setBarScale(7)" >1968-1992</a><!--
-        --><a class="row_block period right" onclick="setBarScale(8)" >1992-X</a><!--
-      --></div>
-    </div>
-        <a class="row_block period left" onclick="setBarScale(0)" >1886-1891</a><!--
-        --><a class="row_block period" onclick="setBarScale(1)" >1891-1899</a><!--
-        --><a class="row_block period" onclick="setBarScale(2)" >1899-1918</a><!--
-        --><a class="row_block period" onclick="setBarScale(3)" >1918-1929</a><!--
-        --><a class="row_block period" onclick="setBarScale(4)" >1929-1941</a><!--
-        --><a class="row_block period" onclick="setBarScale(5)" >1941-1945</a><!--
-        --><a class="row_block period" onclick="setBarScale(6)" >1945-1968</a><!--
-        --><a class="row_block period" onclick="setBarScale(7)" >1968-1992</a><!--
-        --><a class="row_block period right" onclick="setBarScale(8)" >1992-X</a><!--
-      --></div>
-      
+
        <canvas id="mainFrame" > </canvas>
 
        <div>
@@ -63,12 +38,7 @@
           <h1 class = "main hedline" id = "MainHeadline">СПБГЭТУ "ЛЭТИ" <br> сквозь историю </h1>
           <h3 class = "main info" id = "MainHeadinfo"> интерактивный музей<br>становления знаменитого технического<br>ВУЗа</h3> 
           <p class = "main text" id = "MainText"></p>
-         </div>
-
-        <div class = "main " id = "MainInfoDiv">
-          <h1 class = "main hedline" id = "MainHeadline">СПБГЭТУ "ЛЭТИ" <br> сквозь историю </h1>
-          <h3 class = "main info" id = "MainHeadinfo"> интерактивный музей<br>становления знаменитого технического<br>ВУЗа</h3> 
-          <p class = "main text" id = "MainText"></p>
+          <a href = "main.html" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)'" onmouseout ="this.style.color = 'whitesmoke'"> начать путешествие </a>
          </div>
 
        </div>

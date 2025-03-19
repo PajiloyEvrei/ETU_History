@@ -2,15 +2,16 @@ let BAR_SCALE = -0.5;
 
 function setBarScale(scale){
     BAR_SCALE = scale;
-    scalingBar()
+    if (BAR_SCALE > 9){
+      BAR_SCALE = 9
+    } else if (BAR_SCALE < 0){
+      BAR_SCALE = 0
+    }
+    scalingBar();
+    setStep();
 }
 
 function scalingBar(){
-    if (BAR_SCALE > 9){
-      BAR_SCALE = 9
-    } else if (BAR_SCALE < -0.5){
-      BAR_SCALE = -0.5
-    }
     if(BAR_SCALE < 3){
         document.getElementById("progressBar").style.background = "#AD7B3C";
         document.body.style.color = "#AD7B3C"
@@ -27,7 +28,73 @@ function scalingBar(){
         document.body.style.backgroundColor = "rgb(46, 52, 64)"
         document.getElementById("logo").src = "img/logo-etu_red.png";
     }
-    document.getElementById("progressBarLine").style.width = `${171.1 * BAR_SCALE}px`;
+    if (BAR_SCALE == 0){
+      document.getElementById("progressBarLine").style.width = `5px`;
+    } else {
+      document.getElementById("progressBarLine").style.width = `${172 * BAR_SCALE}px`;
+    }
+}
+
+function setStep(){
+    switch(BAR_SCALE){
+    case 0:
+      setPicture(2000,1000,'img/by_SPB_yellow_map_1882.png');
+      break;
+    case 0.5:
+      
+      break;
+    case 1:
+      setPicture(w,h,src)
+      break;
+    case 1.5:
+      setPicture(w,h,src)
+      break;
+    case 2:
+      setPicture(w,h,src)
+      break;
+    case 2.5:
+      setPicture(w,h,src)
+      break;
+    case 3:
+      setPicture(w,h,src)
+      break;
+    case 3.5:
+      setPicture(w,h,src)
+      break;
+    case 4:
+      setPicture(w,h,src)
+      break;
+    case 4.5:
+      setPicture(w,h,src)
+      break;
+    case 5:
+      setPicture(w,h,src)
+      break;
+    case 5.5:
+      setPicture(w,h,src)
+      break;
+    case 6:
+      setPicture(w,h,src)
+      break;
+    case 6.5:
+      setPicture(w,h,src)
+      break;
+    case 7:
+      setPicture(w,h,src)
+      break;
+    case 7.5:
+      setPicture(w,h,src)
+      break;
+    case 8:
+      setPicture(w,h,src)
+      break;
+    case 8.5:
+      setPicture(w,h,src)
+      break;
+    case 9:
+      setPicture(w,h,src)
+      break;
+    }
 }
 
 let elem = document.getElementById('mainFrame');
@@ -91,7 +158,9 @@ function lineBaR(e) {
     }
 }
 
-
+onload = () => {
+  document.getElementById("start").style.opacity = '0';
+}
 
 
 /*

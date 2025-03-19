@@ -7,90 +7,87 @@
 	<title>Информация</title>
 </head>
 <body>
-	<canvas id="canvas" width="300px" height="300px"></canvas>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js"></script>
+	<div id = "mainFrame" style=" width: 1000px; height: 1000px; margin: auto ;overflow:hidden;">
+	</div>
 	<script>
-		const canvas = document.getElementById('canvas');
-		const ctx = canvas.getContext("2d");
-		const image = new Image();
-		image.src = 'img/logo-etu_brown.png';
+		var img = 'https://i.imgur.com/GFLxXVV.jpg';
 
-		requestAnimationFrame(drawCanvas);
+		var camera, renderer, scene,
+		    mouseDownMouseX, mouseDownMouseY, mouseDownLon, mouseDownLat,
+		    lon = 0, lat = 0, phi = 0, theta = 0;
 
-		let matrix = [1, 0, 0, 1, 0, 0];
-		let scale = 1;
-		const pos = { x: 0, y: 0 };
-		let dirty = true;
-		const mouse = {x: 0, y: 0, oldX: 0, oldY: 0, dragging: false};
+		init();
+		animate();
 
-		canvas.addEventListener("mousemove", mouseEvent, {passive: true});
-		canvas.addEventListener("mousedown", mouseEvent, {passive: true});
-		canvas.addEventListener("mouseup", mouseEvent, {passive: true});
-		canvas.addEventListener("mouseout", mouseEvent, {passive: true});
-		canvas.addEventListener("wheel", mouseWheelEvent, {passive: false});
-
-		function apply() {
-		    if (dirty)
-		        update();
-		    ctx.setTransform(matrix[0], matrix[1], matrix[2], matrix[3], matrix[4], matrix[5]);
+		function init() {
+		    camera = new THREE.PerspectiveCamera(75, innerWidth/innerHeight, 1, 1100);
+		    camera.target = new THREE.Vector3(0, 0, 0);
+		    scene = new THREE.Scene();
+		    var geometry = new THREE.SphereBufferGeometry(500, 60, 40);
+		    // -1 выворачивает сферу наизнанку и текстура накладывается изнутри а не снаружи
+		    geometry.scale(-1, 1, 1 ); 
+		    var texture = new THREE.TextureLoader().load(img);
+		    var material = new THREE.MeshBasicMaterial({map: texture});
+		    scene.add( new THREE.Mesh(geometry, material));
+		    renderer = new THREE.WebGLRenderer();
+		    renderer.setPixelRatio( window.devicePixelRatio );
+		    renderer.setSize(window.innerWidth, window.innerHeight);
+		    document.getElementById("mainFrame").append( renderer.domElement);
+		    addEventListener('mousedown', onPointerStart);
+		    addEventListener('mousemove', onPointerMove);
+		    addEventListener('mouseup', onPointerUp);
+		    addEventListener('wheel', onDocumentMouseWheel);
+		    addEventListener('resize', onWindowResize,);
 		}
 
-		function update() {
-		    dirty = false;
-		    matrix[3] = matrix[0] = scale;
-		    matrix[2] = matrix[1] = 0;
-		    matrix[4] = pos.x;
-		    matrix[5] = pos.y;
+		function onWindowResize() {
+		    camera.aspect = innerWidth / innerHeight;
+		    camera.updateProjectionMatrix();
+		    renderer.setSize( innerWidth, innerHeight );
 		}
 
-		function pan(amount) {
-		    if (dirty)
-		        update();
-		    pos.x += amount.x;
-		    pos.y += amount.y;
-		    dirty = true;
+		function onPointerStart( event ) {
+		    var clientX = event.clientX || event.touches[0].clientX;
+		    var clientY = event.clientY || event.touches[0].clientY;
+		    mouseDownMouseX = clientX;
+		    mouseDownMouseY = clientY;
+		    mouseDownLon = lon;
+		    mouseDownLat = lat;
 		}
 
-		function scaleAt(at, amount) {
-		    if (dirty)
-		        update();
-		    scale *= amount;
-		    pos.x = at.x - (at.x - pos.x) * amount;
-		    pos.y = at.y - (at.y - pos.y) * amount;
-		    dirty = true;
+		function onPointerMove( event ) {
+		    if ( !mouseDownMouseX ) return;
+		    var clientX = event.clientX || event.touches[0].clientX;
+		    var clientY = event.clientY || event.touches[0].clientY;
+		    lon = ( mouseDownMouseX - clientX ) * camera.fov/600 + mouseDownLon;
+		    lat = ( clientY - mouseDownMouseY ) * camera.fov/600 + mouseDownLat;
 		}
 
-		function drawCanvas() {
-		    if (dirty) {
-		        ctx.setTransform(1, 0, 0, 1, 0, 0);
-		        ctx.clearRect(0, 0, canvas.width, canvas.height);
-		        apply();
-		        ctx.drawImage(image, 0, 0);
-		    }
-		    requestAnimationFrame(drawCanvas);
+		function onPointerUp() {
+		    mouseDownMouseX = null;
 		}
 
-		function mouseEvent(e) {
-		    if (e.type === "mousedown")
-		        mouse.dragging = true;
-		    if (e.type === "mouseup" || e.type === "mouseout")
-		        mouse.dragging = false;
-		    mouse.oldX = mouse.x;
-		    mouse.oldY = mouse.y;
-		    mouse.x = e.offsetX;
-		    mouse.y = e.offsetY
-		    if (mouse.dragging)
-		        pan({x: mouse.x - mouse.oldX, y: mouse.y - mouse.oldY});
+		function onDocumentMouseWheel( event ) {
+		    var fov = camera.fov + event.deltaY * 0.05;
+		    camera.fov = THREE.Math.clamp(fov, 10, 75);
+		    camera.updateProjectionMatrix();
 		}
 
-		function mouseWheelEvent(e) {
-		    let x = e.offsetX;
-		    let y = e.offsetY;
-		    if (e.deltaY < 0)
-		        scaleAt({x, y}, 1.1);
-		    else
-		        scaleAt({x, y}, 1 / 1.1);
-		    e.preventDefault();
+		function animate() {
+		    requestAnimationFrame( animate );
+		    // азимут поворота камеры в градусах, вращаем камеру 
+		    lon += mouseDownMouseX ? 0 : 0.02;
+		    // угол места в градусах ограничиваем от -85 до 85
+		    lat = Math.max(-85, Math.min(85, lat));
+		    // пересчитываем в радианы
+		    phi = THREE.Math.degToRad(90 - lat);
+		    theta = THREE.Math.degToRad(lon);
+		    camera.target.x = 0.001 * Math.sin(phi) * Math.cos(theta);
+		    camera.target.y = 0.001 * Math.cos(phi);
+		    camera.target.z = 0.001 * Math.sin(phi) * Math.sin(theta);
+		    camera.lookAt(camera.target);
+		    renderer.render(scene, camera);
 		}
 	</script>
 </body>

@@ -10,10 +10,18 @@
 let canvas = document.getElementById('mainFrame');
 const ctx = canvas.getContext("2d");
 const image = new Image();
-image.src = 'img/by_SPB_yellow_map_1882.png';
-canvas.width = 2000;
-canvas.height = 1000;
-requestAnimationFrame(drawCanvas);
+
+let widthImg , heightImg ;
+
+setPicture(2000,1000,'img/by_SPB_yellow_map_1882.png');
+function setPicture(w,h,src){
+    image.src = src;
+    canvas.width = w;
+    widthImg = w;
+    canvas.height = h;
+    heightImg = h;
+    requestAnimationFrame(drawCanvas);
+}
 
 let matrix = [1, 0, 0, 1, 0, 0];
 let scale = 1;
@@ -45,10 +53,10 @@ function update() {
 function pan(amount) {
     if (dirty)
         update();
-    if(pos.x + amount.x > -200 && pos.x + amount.x < 200){
+    if(pos.x + amount.x > -widthImg/4 && pos.x + amount.x < widthImg/4){
         pos.x += amount.x;
     }
-    if(pos.y + amount.y > -200 && pos.y + amount.y < 200){
+    if(pos.y + amount.y > -heightImg/4 && pos.y + amount.y < heightImg/4){
         pos.y += amount.y;
     }
     dirty = true;
@@ -68,7 +76,7 @@ function drawCanvas() {
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         apply();
-        ctx.drawImage(image, 0, 0, canvas.width + 500, canvas.height + 500, -250, -250, canvas.width + 1000, canvas.height + 1000);
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height, -canvas.width/4, -canvas.height/4, canvas.width, canvas.height);
     }
     requestAnimationFrame(drawCanvas);
 }
