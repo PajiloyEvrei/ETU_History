@@ -1,5 +1,5 @@
     var img = 'https://i.imgur.com/GFLxXVV.jpg';
-
+    
     var camera, renderer, scene,
         mouseDownMouseX, mouseDownMouseY, mouseDownLon, mouseDownLat,
         lon = 0, lat = 0, phi = 0, theta = 0;
@@ -44,11 +44,13 @@
     }
 
     function onPointerMove( event ) {
-      if ( !mouseDownMouseX ) return;
+      //if ( !mouseDownMouseX ) return;
       var clientX = event.clientX || event.touches[0].clientX;
       var clientY = event.clientY || event.touches[0].clientY;
-      lon = ( mouseDownMouseX - clientX ) * camera.fov/600 + mouseDownLon;
-      lat = ( clientY - mouseDownMouseY ) * camera.fov/600 + mouseDownLat;
+      lon = clientX/window.innerWidth * 180;
+      lat = -clientY/(window.innerHeight-300) * 20;
+      //lon = ( mouseDownMouseX - clientX ) * camera.fov/600 + mouseDownLon;
+      //lat = ( clientY - mouseDownMouseY ) * camera.fov/600 + mouseDownLat;
     }
 
     function onPointerUp() {
@@ -64,7 +66,7 @@
     function animate() {
         requestAnimationFrame( animate );
         // азимут поворота камеры в градусах, вращаем камеру 
-        lon += mouseDownMouseX ? 0 : 0.02;
+        lon += mouseDownMouseX ? 0 : 0;
         // угол места в градусах ограничиваем от -85 до 85
         lat = Math.max(-85, Math.min(85, lat));
         // пересчитываем в радианы
