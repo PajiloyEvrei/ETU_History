@@ -169,6 +169,7 @@ canvas {
 	width: 99%;
 	height: 90%;
 	background-color: black;
+	overflow: hidden;
 }
 
 #about {
@@ -259,4 +260,14 @@ canvas {
 	z-index: 9999;
 	transition: opacity 4s;
 	pointer-events: none;
+}
+
+#info {
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    padding: 0 10px 0 10px;
+    opacity: 0;
 }

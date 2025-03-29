@@ -7,33 +7,45 @@
 // 	})
 // })
 
-let canvas = document.getElementById('mainFrame');
-const ctx = canvas.getContext("2d");
-const image = new Image();
+let canvas;
+let ctx;
+let image;
 
 let widthImg , heightImg ;
 
-setPicture(2000,1000,'img/by_SPB_yellow_map_1882.png');
+let matrix;
+let scale ;
+let pos ;
+let dirty;
+let mouse;
+
 function setPicture(w,h,src){
+    canvas = document.getElementById('mainFrame');
+    ctx = canvas.getContext("2d");
+    image = new Image();
+
+    matrix = [1, 0, 0, 1, 0, 0];
+    scale = 1;
+    pos = { x: 0, y: 0 };
+    dirty = true;
+    mouse = {x: 0, y: 0, oldX: 0, oldY: 0, dragging: false};
+
+
+    canvas.addEventListener("mousemove", mouseEvent, {passive: true});
+    canvas.addEventListener("mouseover", mouseEvent, {passive: true});
+    canvas.addEventListener("mousedown", mouseEvent, {passive: true});
+    canvas.addEventListener("mouseup", mouseEvent, {passive: true});
+    canvas.addEventListener("mouseout", mouseEvent, {passive: true});
+
     image.src = src;
-    canvas.width = w;
+    canvas.width = innerWidth;
     widthImg = w;
-    canvas.height = h;
+    canvas.height = innerHeight-100;
     heightImg = h;
     requestAnimationFrame(drawCanvas);
 }
 
-let matrix = [1, 0, 0, 1, 0, 0];
-let scale = 1;
-const pos = { x: 0, y: 0 };
-let dirty = true;
-const mouse = {x: 0, y: 0, oldX: 0, oldY: 0, dragging: false};
 
-canvas.addEventListener("mousemove", mouseEvent, {passive: true});
-canvas.addEventListener("mouseover", mouseEvent, {passive: true});
-canvas.addEventListener("mousedown", mouseEvent, {passive: true});
-canvas.addEventListener("mouseup", mouseEvent, {passive: true});
-canvas.addEventListener("mouseout", mouseEvent, {passive: true});
 
 function apply() {
     if (dirty)
@@ -76,7 +88,7 @@ function drawCanvas() {
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         apply();
-        ctx.drawImage(image, 0, 0, canvas.width, canvas.height, -canvas.width/4, -canvas.height/4, canvas.width, canvas.height);
+        ctx.drawImage(image, 0, 0, widthImg, heightImg, -widthImg/4, -heightImg/4, canvas.width*1.5, canvas.height*1.5);
     }
     requestAnimationFrame(drawCanvas);
 }

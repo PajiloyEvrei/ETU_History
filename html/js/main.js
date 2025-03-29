@@ -1,4 +1,21 @@
 let BAR_SCALE = -0.5;
+let elem = document.getElementById('mainFrame');
+let wheel = 0;
+
+if (elem.addEventListener) {
+      if ('onwheel' in document) {
+        // IE9+, FF17+, Ch31+
+        elem.addEventListener("wheel", onWheel);
+      } else if ('onmousewheel' in document) {
+        // устаревший вариант события
+        elem.addEventListener("mousewheel", onWheel);
+      } else {
+        // Firefox < 17
+        elem.addEventListener("MozMousePixelScroll", onWheel);
+      }
+    } else { // IE8-
+      elem.attachEvent("onmousewheel", onWheel);
+  }
 
 function setBarScale(scale){
     BAR_SCALE = scale;
@@ -35,13 +52,38 @@ function scalingBar(){
     }
 }
 
+function changeTagName(el, newTagName) {
+  var n = document.createElement(newTagName);
+  var attr = el.attributes;
+  for (var i = 0, len = attr.length; i < len; ++i) {
+    n.setAttribute(attr[i].name, attr[i].value);
+  }
+  n.innerHTML = el.innerHTML;
+  el.parentNode.replaceChild(n, el);
+  return n;
+}
+
 function setStep(){
     switch(BAR_SCALE){
     case 0:
-      setPicture(2000,1000,'img/by_SPB_yellow_map_1882.png');
+      elem.innerHTML = "";
+      elem = changeTagName(document.getElementById('mainFrame'), 'canvas');
+      setPicture(2088,1174,'img/by_SPB_yellow_map_1882.png');
       break;
     case 0.5:
-      
+      elem.innerHTML = "";
+      elem = changeTagName(document.getElementById('mainFrame'), 'div');
+      setPanorama( "https://i.imgur.com/GFLxXVV.jpg", "https://i.imgur.com/NUKbrbl.png",
+      {"255,0,0": "Розетка 1",
+      "245,0,0": "Окно 1",
+      "235,0,0": "Лоток",
+      "225,0,0": "Коробка",
+      "215,0,0": "Ящик стола",
+      "205,0,0": "Розетка 2",
+      "195,0,0": "Камин",
+      "185,0,0": "Окно 2",
+      "175,0,0": "А здесь был лось",
+      "165,0,0": "Стол"});
       break;
     case 1:
       setPicture(w,h,src)
@@ -95,24 +137,20 @@ function setStep(){
       setPicture(w,h,src)
       break;
     }
-}
-
-let elem = document.getElementById('mainFrame');
-let wheel = 0;
-
-if (elem.addEventListener) {
-  if ('onwheel' in document) {
-    // IE9+, FF17+, Ch31+
-    elem.addEventListener("wheel", onWheel);
-  } else if ('onmousewheel' in document) {
-    // устаревший вариант события
-    elem.addEventListener("mousewheel", onWheel);
-  } else {
-    // Firefox < 17
-    elem.addEventListener("MozMousePixelScroll", onWheel);
+    if (elem.addEventListener) {
+      if ('onwheel' in document) {
+        // IE9+, FF17+, Ch31+
+        elem.addEventListener("wheel", onWheel);
+      } else if ('onmousewheel' in document) {
+        // устаревший вариант события
+        elem.addEventListener("mousewheel", onWheel);
+      } else {
+        // Firefox < 17
+        elem.addEventListener("MozMousePixelScroll", onWheel);
+      }
+    } else { // IE8-
+      elem.attachEvent("onmousewheel", onWheel);
   }
-} else { // IE8-
-  elem.attachEvent("onmousewheel", onWheel);
 }
 
 
@@ -126,11 +164,12 @@ function onWheel(e) {
   if (wheel > 150) {
     BAR_SCALE+=0.5
     wheel = 0
+    setBarScale(BAR_SCALE)
   } else if (wheel < -150){
     BAR_SCALE-=0.5
     wheel = 0
+    setBarScale(BAR_SCALE)
   }
-  scalingBar()
 
   e.preventDefault ? e.preventDefault() : (e.returnValue = false);
 }

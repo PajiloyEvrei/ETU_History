@@ -35,11 +35,12 @@
       </div>
 
 </header>
+
 <body>
       <div class="row periods"  id="progressBar" style="background-color: #AD7B3C">
         <div id="invisibleTriggerProgress"></div>
         <div id="progressBarLine" class="row periods"><!--
-          --><div><!--
+          --><div><!--дрова
           --><a class="row_block period left" onclick="setBarScale(0)" >1886-1891</a><!--
         --><a class="row_block period" onclick="setBarScale(1)" >1891-1899</a><!--
         --><a class="row_block period" onclick="setBarScale(2)" >1899-1918</a><!--
@@ -62,21 +63,17 @@
         --><a class="row_block period right" onclick="setBarScale(8)" >1992-X</a><!--
       --></div>
       
-       <div id="mainFrame"> </div>
+       <div id="mainFrame"> 
+            <div class = "main" id = "MainInfoDiv">
+              <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
+              <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
+              <p class = "text" id = "MainText"><img style="float: right; width: 400px; height: 250px;" src="img/Novoisakievskaya18.jpg">
+              В 1885 году Министром внутренних дел графом Д.А. Толстым в Государственный Совет был представлены проекты Положения, Устава и Штата высшего учебного заведения под названием «Телеграфный Институт», открытие которого было обусловлено острой потребностью России в собственных инженерных кадрах в области электросвязи.</p>
+              <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)'" onmouseout ="this.style.color = 'whitesmoke'" 
+              onclick = "setBarScale(0.5)">войти внутрь</a>
 
-<!--        <div>
-
-        <div class = "main" id = "MainInfoDiv">
-          <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
-          <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
-          <p class = "text" id = "MainText"><img style="float: right; width: 400px; height: 250px;" src="img/Novoisakievskaya18.jpg">
-          В 1885 году Министром внутренних дел графом Д.А. Толстым в Государственный Совет был представлены проекты Положения, Устава и Штата высшего учебного заведения под названием «Телеграфный Институт», открытие которого было обусловлено острой потребностью России в собственных инженерных кадрах в области электросвязи.</p>
-          <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)'" onmouseout ="this.style.color = 'whitesmoke'" 
-          onclick = "setBarScale(0.5)">войти внутрь</a>
-
-         </div>
-
-       </div> -->
+           </div>
+       </div>
 
         
 
@@ -109,7 +106,7 @@
 
   </div>
 </aside>
-<script src="js/panorama.js"></script>
 <script src="js/app.js"></script>
+<script src="js/panorama.js"></script>
 <script src="js/main.js"></script>
 </html>
