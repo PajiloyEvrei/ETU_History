@@ -72,18 +72,23 @@ function setStep(){
       break;
     case 0.5:
       elem.innerHTML = "";
-      elem = changeTagName(document.getElementById('mainFrame'), 'div');
-      setPanorama( "https://i.imgur.com/GFLxXVV.jpg", "https://i.imgur.com/NUKbrbl.png",
-      {"255,0,0": "Розетка 1",
-      "245,0,0": "Окно 1",
-      "235,0,0": "Лоток",
-      "225,0,0": "Коробка",
-      "215,0,0": "Ящик стола",
-      "205,0,0": "Розетка 2",
-      "195,0,0": "Камин",
-      "185,0,0": "Окно 2",
-      "175,0,0": "А здесь был лось",
-      "165,0,0": "Стол"});
+      elem = changeTagName(document.getElementById('mainFrame'), 'div');//https://i.imgur.com/GFLxXVV.jpg
+      setPanorama( {
+        texture: "https://i.imgur.com/TRW3kV5.jpeg",
+        stencil: "https://i.imgur.com/NUKbrbl.png",
+        objects: {
+          "255,0,0": "Розетка 1",
+          "245,0,0": "Окно 1",
+          "235,0,0": "Лоток",
+          "225,0,0": "Коробка",
+          "215,0,0": "Ящик стола",
+          "205,0,0": "Розетка 2",
+          "195,0,0": "Камин",
+          "185,0,0": "Окно 2",
+          "175,0,0": "А здесь был лось",
+          "165,0,0": "Стол"
+        }
+      });
       break;
     case 1:
       setPicture(w,h,src)
@@ -164,11 +169,11 @@ function onWheel(e) {
   if (wheel > 150) {
     BAR_SCALE+=0.5
     wheel = 0
-    setBarScale(BAR_SCALE)
+    scalingBar(BAR_SCALE)
   } else if (wheel < -150){
     BAR_SCALE-=0.5
     wheel = 0
-    setBarScale(BAR_SCALE)
+    scalingBar(BAR_SCALE)
   }
 
   e.preventDefault ? e.preventDefault() : (e.returnValue = false);

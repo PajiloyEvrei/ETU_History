@@ -1,32 +1,18 @@
+function setPanorama(panor){
+
   let camera, scene, renderer, mesh, material, e, objects,
       imgData, uv, info, lon = 0, lat = 0;
 
-  var mousePDown = {};
-  var mouseP = new THREE.Vector2();
+  var mouseDown = {};
+  var mouse = new THREE.Vector2();
   var raycaster = new THREE.Raycaster();
-  let canvasP;
-  let ctxP;
+  let canvas = document.createElement('canvas');
+  var ctx = canvas.getContext('2d');
 
-  // init({
-  //   texture: "https://i.imgur.com/GFLxXVV.jpg",
-  //   stencil: "https://i.imgur.com/NUKbrbl.png",
-  //   objects: {
-  //     "255,0,0": "Розетка 1",
-  //     "245,0,0": "Окно 1",
-  //     "235,0,0": "Лоток",
-  //     "225,0,0": "Коробка",
-  //     "215,0,0": "Ящик стола",
-  //     "205,0,0": "Розетка 2",
-  //     "195,0,0": "Камин",
-  //     "185,0,0": "Окно 2",
-  //     "175,0,0": "А здесь был лось",
-  //     "165,0,0": "Стол"
-  //   }
-  // })
-
+  init(panor)
   function init(json) {
-      canvasP.width = innerWidth;
-      canvasP.height = innerHeight-100;
+      canvas.width = innerWidth;
+      canvas.height = innerHeight-100;
       objects = json.objects;
       camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 1, 1100);
       camera.target = new THREE.Vector3(0, 0, 0);
@@ -37,42 +23,21 @@
       scene.add(mesh = new THREE.Mesh(geometry, material));
       renderer = new THREE.WebGLRenderer();
       renderer.setPixelRatio(devicePixelRatio);
-      renderer.setSize(canvasP.width, canvasP.height);
+      renderer.setSize(canvas.width, canvas.height);
       document.getElementById('mainFrame').append(renderer.domElement);
       info = document.createElement('div');
       info.id = 'info';
       document.body.append(info);
-      canvasP.addEventListener('mousePdown', onPointerStart);
-      canvasP.addEventListener('mousePmove', onPointerMove);
-      canvasP.addEventListener('mousePup', onPointerUp);
-      //addEventListener('wheel', onDocumentMousePWheel);
-      canvasP.addEventListener('touchstart', onPointerStart);
-      canvasP.addEventListener('touchmove', onPointerMove);
-      canvasP.addEventListener('touchend', onPointerUp);
-      canvasP.addEventListener('resize', onWindowResize);
+      addEventListener('mousedown', onPointerStart);
+      addEventListener('mousemove', onPointerMove);
+      addEventListener('mouseup', onPointerUp);
+      //addEventListener('wheel', onDocumentMouseWheel);
+      addEventListener('touchstart', onPointerStart);
+      addEventListener('touchmove', onPointerMove);
+      addEventListener('touchend', onPointerUp);
+      addEventListener('resize', onWindowResize);
       animate();
   }
-
-function setPanorama(texture,stencil,objects){
-  canvasP = document.createElement('canvas');
-  ctxP = canvasP.getContext('2d');
-  init({
-    texture: "https://i.imgur.com/GFLxXVV.jpg",
-    stencil: "https://i.imgur.com/NUKbrbl.png",
-    objects: {
-      "255,0,0": "Розетка 1",
-      "245,0,0": "Окно 1",
-      "235,0,0": "Лоток",
-      "225,0,0": "Коробка",
-      "215,0,0": "Ящик стола",
-      "205,0,0": "Розетка 2",
-      "195,0,0": "Камин",
-      "185,0,0": "Окно 2",
-      "175,0,0": "А здесь был лось",
-      "165,0,0": "Стол"
-    }
-  })
-}
 
   function createMaterial(img, stencil) {
       let textureLoader = new THREE.TextureLoader();
@@ -80,14 +45,14 @@ function setPanorama(texture,stencil,objects){
       stencilImage.crossOrigin = "anonymous";
       stencilImage.src = stencil;
       stencilImage.onload = function() {
-        stencilImage.width = canvasP.width;
-        stencilImage.height = canvasP.width;
-          ctxP.drawImage(stencilImage,0,0);
-          imgData = ctxP.getImageData(0, 0, canvasP.width, canvasP.height);
+        stencilImage.width = canvas.width;
+        stencilImage.height = canvas.width;
+          ctx.drawImage(stencilImage,0,0);
+          imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       };
       return new THREE.ShaderMaterial({
           uniforms: {
-              mouseP: { type: "2f", value: mouseP },
+              mouse: { type: "2f", value: mouse },
               texture1: { type: "t", value: textureLoader.load( img ) },
               texture2: { type: "t", value: textureLoader.load( stencil ) }
           },
@@ -100,13 +65,13 @@ function setPanorama(texture,stencil,objects){
           fragmentShader: `
               precision highp float;
               varying vec2 vUv;
-              uniform vec2 mouseP;
+              uniform vec2 mouse;
               uniform sampler2D texture1;
               uniform sampler2D texture2;
               void main() {
                   vec4 stencil = texture2D(texture2, vUv);
                   gl_FragColor = texture2D(texture1, vUv);
-                  vec4 c = texture2D(texture2, mouseP);
+                  vec4 c = texture2D(texture2, mouse);
                   if (abs(c.x - stencil.x) < 0.0001 && stencil.x > 0.)
                       gl_FragColor += vec4(0.,0.2,0,0.);
               }`
@@ -116,31 +81,31 @@ function setPanorama(texture,stencil,objects){
   function onWindowResize() {
       camera.aspect = innerWidth / innerHeight;
       camera.updateProjectionMatrix();
-      canvasP.width = innerWidth;
-      canvasP.height = innerHeight-100;
-      renderer.setSize( canvasP.width, canvasP.height );
+      canvas.width = innerWidth;
+      canvas.height = innerHeight-100;
+      renderer.setSize( canvas.width, canvas.height );
   }
 
   function onPointerStart( event ) {
-      mousePDown.x = event.clientX || event.touches[ 0 ].clientX;
-      mousePDown.y = event.clientY || event.touches[ 0 ].clientY;
-      mousePDown.lon = lon;
-      mousePDown.lat = lat;
+      mouseDown.x = event.clientX || event.touches[ 0 ].clientX;
+      mouseDown.y = event.clientY || event.touches[ 0 ].clientY;
+      mouseDown.lon = lon;
+      mouseDown.lat = lat;
   }
 
   function raycast(event) {
       var rect = renderer.domElement.getBoundingClientRect();
       var x = (event.clientX - rect.left)/rect.width,
           y = (event.clientY - rect.top)/rect.height;
-      mouseP.set(x*2 - 1, 1 - y*2);
-      raycaster.setFromCamera(mouseP, camera);
+      mouse.set(x*2 - 1, 1 - y*2);
+      raycaster.setFromCamera(mouse, camera);
       var intersects = raycaster.intersectObjects( scene.children );
       if (intersects.length > 0 && intersects[0].uv) {
-          material.uniforms.mouseP.value = uv = intersects[0].uv;
+          material.uniforms.mouse.value = uv = intersects[0].uv;
           if (!imgData)return;
-          let y = Math.floor((1-uv.y)*canvasP.height);
-          let x = Math.floor(uv.x*canvasP.width);
-          let off = Math.floor(y*canvasP.width + x)*4;
+          let y = Math.floor((1-uv.y)*canvas.height);
+          let x = Math.floor(uv.x*canvas.width);
+          let off = Math.floor(y*canvas.width + x)*4;
           let r = imgData.data[off];
           let g = imgData.data[off+1];
           let b = imgData.data[off+2];
@@ -153,19 +118,19 @@ function setPanorama(texture,stencil,objects){
 
   function onPointerMove( event ) {
       raycast(e = event);
-      if (!mousePDown.x) return;
+      if (!mouseDown.x) return;
       let clientX = event.clientX || event.touches[0].clientX;
       let clientY = event.clientY || event.touches[0].clientY;
-      lon = (mousePDown.x - clientX)*camera.fov/600 + mousePDown.lon;
-      lat = (clientY - mousePDown.y)*camera.fov/600 + mousePDown.lat;
+      lon = (mouseDown.x - clientX)*camera.fov/600 + mouseDown.lon;
+      lat = (clientY - mouseDown.y)*camera.fov/600 + mouseDown.lat;
       lat = Math.max( - 85, Math.min( 85, lat ) );
   }
 
   function onPointerUp() {
-      mousePDown.x = null;
+      mouseDown.x = null;
   }
 
-  function onDocumentMousePWheel( event ) {
+  function onDocumentMouseWheel( event ) {
       let fov = camera.fov + event.deltaY * 0.05;
       camera.fov = THREE.Math.clamp(fov, 10, 75);
       camera.updateProjectionMatrix();
@@ -183,3 +148,4 @@ function setPanorama(texture,stencil,objects){
       e&&raycast(e);
       renderer.render(scene, camera);
   }
+}
