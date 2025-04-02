@@ -1,21 +1,55 @@
 let BAR_SCALE = -0.5;
 let elem = document.getElementById('mainFrame');
 let wheel = 0;
-
-if (elem.addEventListener) {
-      if ('onwheel' in document) {
-        // IE9+, FF17+, Ch31+
-        elem.addEventListener("wheel", onWheel);
-      } else if ('onmousewheel' in document) {
-        // устаревший вариант события
-        elem.addEventListener("mousewheel", onWheel);
-      } else {
-        // Firefox < 17
-        elem.addEventListener("MozMousePixelScroll", onWheel);
+let places = {
+  building_3_main: {
+        texture: "https://i.imgur.com/TRW3kV5.jpeg",
+        stencil: "https://i.imgur.com/iHRZiwM.png",
+        objects: {
+          "255,0,0": "building_3_left",
+          "250,0,0": "building_3_right",
+        }
+      },
+  building_3_left: {
+      texture: "https://i.imgur.com/jevL9av.jpeg",
+      stencil: "https://i.imgur.com/NUKbrbl.png",
+      objects: {
+        "255,0,0": "building_3_main",
+        "250,0,0": "FirstBiulding",
       }
-    } else { // IE8-
-      elem.attachEvent("onmousewheel", onWheel);
-  }
+    },
+  building_3_right: {
+      texture: "https://i.imgur.com/MNpyChM.jpeg",
+      stencil: "https://i.imgur.com/LGPWAL3.png",
+      objects: {
+        "255,0,0": "building_3_main",
+        "250,0,0": "FirstBiulding",
+      }
+    }
+};
+let things = {
+  FirstBiulding : "это первое здание Почтово-Телеграфного училища",
+  Sobor: "",
+  portrait : "",
+  men: "",
+  flag: "",
+}
+
+
+// if (elem.addEventListener) {
+//       if ('onwheel' in document) {
+//         // IE9+, FF17+, Ch31+
+//         elem.addEventListener("wheel", onWheel);
+//       } else if ('onmousewheel' in document) {
+//         // устаревший вариант события
+//         elem.addEventListener("mousewheel", onWheel);
+//       } else {
+//         // Firefox < 17
+//         elem.addEventListener("MozMousePixelScroll", onWheel);
+//       }
+//     } else { // IE8-
+//       elem.attachEvent("onmousewheel", onWheel);
+//   }
 
 function setBarScale(scale){
     BAR_SCALE = scale;
@@ -72,21 +106,13 @@ function setStep(){
       break;
     case 0.5:
       elem.innerHTML = "";
-      elem = changeTagName(document.getElementById('mainFrame'), 'div');//https://i.imgur.com/GFLxXVV.jpg
+      elem = changeTagName(document.getElementById('mainFrame'), 'div');//https://i.imgur.com/GFLxXVV.jpg    комната: https://imgur.com/jevL9av комнатаpen https://i.imgur.com/NUKbrbl.png"
       setPanorama( {
         texture: "https://i.imgur.com/TRW3kV5.jpeg",
-        stencil: "https://i.imgur.com/NUKbrbl.png",
+        stencil: "https://i.imgur.com/iHRZiwM.png",
         objects: {
-          "255,0,0": "Розетка 1",
-          "245,0,0": "Окно 1",
-          "235,0,0": "Лоток",
-          "225,0,0": "Коробка",
-          "215,0,0": "Ящик стола",
-          "205,0,0": "Розетка 2",
-          "195,0,0": "Камин",
-          "185,0,0": "Окно 2",
-          "175,0,0": "А здесь был лось",
-          "165,0,0": "Стол"
+          "255,0,0": "building_3_left",
+          "250,0,0": "building_3_right",
         }
       });
       break;

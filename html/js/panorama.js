@@ -1,13 +1,17 @@
+
+
 function setPanorama(panor){
 
   let camera, scene, renderer, mesh, material, e, objects,
-      imgData, uv, info, lon = 0, lat = 0;
+      imgData, uv, info, lon = 0, lat = 0, clx=0, dclx = 0;
 
   var mouseDown = {};
   var mouse = new THREE.Vector2();
   var raycaster = new THREE.Raycaster();
   let canvas = document.createElement('canvas');
   var ctx = canvas.getContext('2d');
+
+  let click = false;
 
   init(panor)
   function init(json) {
@@ -29,12 +33,13 @@ function setPanorama(panor){
       info.id = 'info';
       document.body.append(info);
       addEventListener('mousedown', onPointerStart);
-      addEventListener('mousemove', onPointerMove);
+
+      elem.addEventListener('mousemove', onPointerMove);
       addEventListener('mouseup', onPointerUp);
-      //addEventListener('wheel', onDocumentMouseWheel);
+      elem.addEventListener('wheel', onDocumentMouseWheel);
       addEventListener('touchstart', onPointerStart);
-      addEventListener('touchmove', onPointerMove);
-      addEventListener('touchend', onPointerUp);
+      elem.addEventListener('touchmove', onPointerMove);
+      elem.addEventListener('touchend', onPointerUp);
       addEventListener('resize', onWindowResize);
       animate();
   }
@@ -45,8 +50,8 @@ function setPanorama(panor){
       stencilImage.crossOrigin = "anonymous";
       stencilImage.src = stencil;
       stencilImage.onload = function() {
-        stencilImage.width = canvas.width;
-        stencilImage.height = canvas.width;
+          canvas.width = stencilImage.width;
+          canvas.height = stencilImage.height;
           ctx.drawImage(stencilImage,0,0);
           imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       };
@@ -79,18 +84,20 @@ function setPanorama(panor){
   }
 
   function onWindowResize() {
-      camera.aspect = innerWidth / innerHeight;
-      camera.updateProjectionMatrix();
-      canvas.width = innerWidth;
-      canvas.height = innerHeight-100;
-      renderer.setSize( canvas.width, canvas.height );
+      // camera.aspect = innerWidth / innerHeight;
+      // camera.updateProjectionMatrix();
+      // canvas.width = innerWidth;
+      // canvas.height = innerHeight-100;
+      // renderer.setSize( canvas.width, canvas.height );
   }
 
   function onPointerStart( event ) {
+      click = false;
       mouseDown.x = event.clientX || event.touches[ 0 ].clientX;
       mouseDown.y = event.clientY || event.touches[ 0 ].clientY;
       mouseDown.lon = lon;
       mouseDown.lat = lat;
+      clx = event.clientX;
   }
 
   function raycast(event) {
@@ -100,6 +107,7 @@ function setPanorama(panor){
       mouse.set(x*2 - 1, 1 - y*2);
       raycaster.setFromCamera(mouse, camera);
       var intersects = raycaster.intersectObjects( scene.children );
+      clx = event.clientX;
       if (intersects.length > 0 && intersects[0].uv) {
           material.uniforms.mouse.value = uv = intersects[0].uv;
           if (!imgData)return;
@@ -110,6 +118,26 @@ function setPanorama(panor){
           let g = imgData.data[off+1];
           let b = imgData.data[off+2];
           info.innerHTML = objects[`${r},${g},${b}`];
+          if (objects[`${r},${g},${b}`] == 'building_3_left'){
+            document.getElementById('mainFrame').style.cursor = "pointer";
+          }
+          else{
+            document.getElementById('mainFrame').style.cursor = "default";
+          }
+          if (objects[`${r},${g},${b}`] && click){
+            if(typeof(places[objects[`${r},${g},${b}`]]) != "undefined"){
+              elem.innerHTML = "";
+              elem = changeTagName(document.getElementById('mainFrame'), 'div');//https://i.imgur.com/GFLxXVV.jpg    комната: https://imgur.com/jevL9av комнатаpen https://i.imgur.com/NUKbrbl.png"
+              setPanorama( {
+                texture: places[objects[`${r},${g},${b}`]]['texture'],
+                stencil: places[objects[`${r},${g},${b}`]]['stencil'],
+                objects: places[objects[`${r},${g},${b}`]]['objects']
+              });
+            } else{
+              document.getElementById('objectInfo').style.height = '500px';
+              document.getElementById('objectInfo_information').innerHTML = things[objects[`${r},${g},${b}`]];
+            }
+          }
           info.style.left = event.clientX + 15 + 'px';
           info.style.top = event.clientY + 'px';
           info.style.opacity = r+g+b ? 1 : 0;
@@ -117,6 +145,7 @@ function setPanorama(panor){
   }
 
   function onPointerMove( event ) {
+      click = false;
       raycast(e = event);
       if (!mouseDown.x) return;
       let clientX = event.clientX || event.touches[0].clientX;
@@ -124,10 +153,13 @@ function setPanorama(panor){
       lon = (mouseDown.x - clientX)*camera.fov/600 + mouseDown.lon;
       lat = (clientY - mouseDown.y)*camera.fov/600 + mouseDown.lat;
       lat = Math.max( - 85, Math.min( 85, lat ) );
+      clx = event.clientX;
   }
 
   function onPointerUp() {
+      dclx = mouseDown.x;
       mouseDown.x = null;
+      click = true;
   }
 
   function onDocumentMouseWheel( event ) {
@@ -145,6 +177,9 @@ function setPanorama(panor){
       camera.target.y = 0.001*Math.cos(phi);
       camera.target.z = 0.001*Math.sin(phi)*Math.sin(theta);
       camera.lookAt(camera.target);
+      if(dclx != clx){
+        click = false;
+      }
       e&&raycast(e);
       renderer.render(scene, camera);
   }

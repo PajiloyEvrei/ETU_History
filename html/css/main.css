@@ -271,3 +271,37 @@ canvas {
     padding: 0 10px 0 10px;
     opacity: 0;
 }
+
+#objectInfo {
+	font-family: "Roboto";
+	border-top-radius: 10%;
+	boredr: 1px solid rgba(0, 0, 0, 0.4) ;
+	white-space: nowrap;
+	position: fixed;
+	color: black;
+	bottom: 0px;
+	margin: auto;
+	left: 0;
+	height: 0px;
+	background-color: whitesmoke;
+	width: 60%;
+	overflow: hidden;
+	transition: height 1.5s;
+}
+
+#objectInfo_backButton {
+	margin: auto;
+	color: rgba(0, 0, 0, 0.4);
+}
+#objectInfo_backButton:hover {
+	color: rgba(0, 0, 0, 1);
+	cursor: pointer;
+}
+
+#objectInfo_information {
+	border-top: 1px solid rgba(0, 0, 0, 0.4);
+}
+#cursor {
+	position: absolute;
+
+}
