@@ -229,7 +229,7 @@ canvas {
 	top: 100%;
 	margin: auto;
 	left: 20%;
-	max-width: 60%;
+	max-width: 65%;
 	max-height: 100%;
 	background-color: rgba(0, 0, 0, 0.4);
 	border-radius: 1%;
@@ -237,14 +237,19 @@ canvas {
 	font-size: 40px;
 	text-align: left;
 	padding: 30px;
+	padding-right: 0px;
 	font-family: "Roboto";
-	transition: height 4s, padding 4s, top 4s;
+	transition: height 4s, padding 4s, top 4s, left 4s, right 4s;
 	overflow: hidden;
+	min-width: 1045px;
+	flex-wrap: nowrap;
 }
 
 .text {
 	font-size: 20px;
 	margin-top: 40px;
+	overflow: hidden;
+	width: 1000px;
 }
 .main{
 	margin-top: 0px;
@@ -322,15 +327,15 @@ canvas {
 
 #rightArrow {
 	font-family: AvenirLTProLight;
-	position: fixed;
-	bottom: 88%;
-	right: 5px;
-	top: 70px;
 	width: 40px;
-	font-size: 15px;
-	vertical-align: middle;
+	padding-top: 20%;
+	padding-bottom: 20%;
+	padding-left: 10px;
+	font-size: 25px;
 	text-align: center;
-	transition: top 1.5s;
+	mergin-left: 10px;
+	wrap: nowrap;
+	overflow: hidden;
 }
 
 #leftArrow {
@@ -347,10 +352,10 @@ canvas {
 
 
 .button {
-	color: rgba(255, 255, 255, 0.4);
+	color: whitesmoke;
 }
 
 .button:hover {
-	color: rgba(255, 255, 255, 1);
+	color: rgba(255, 255, 255, 0.4);
 	cursor: pointer;
 }

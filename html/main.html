@@ -71,8 +71,8 @@
         </div> -->
 
 
-         <canvas id="mainFrame"> 
-         </canvas>
+         <div id="mainFrame" onclick="this.play()" style="object-fit: cover"> 
+         </div>
         <div id = "mainInfo">
           <div class = "main" id = "MainInfoDiv">
 
@@ -121,10 +121,11 @@
 <script src="js/main.js"></script>
 <script>
       elem.innerHTML = "";
-      document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv">
+      document.getElementById("mainInfo").innerHTML = `<div class = "main row" id = "MainInfoDiv">
+      <div>
               <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
               <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
-              <p class = "text" id = "MainText"><img style="float: right; width: 400px; height: 250px;" src="img/Novoisakievskaya18.jpg">
+              <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 400px; height: 250px;" src="img/Novoisakievskaya18.jpg">
              В конце 19-го века в России возникла потребность в собственных инженерных кадрах 
               для телеграфной отрасли. По инициативе Министерства внутренних дел и графа Д.А. 
               Толстого в 1885 году был разработан проект «Телеграфного Института», но 
@@ -133,11 +134,14 @@
               ведомства, который получил одобрение императора Александра III. Училище 
               открылось в 1886 году в Санкт-Петербурге под руководством Н.Г. Писаревского, став 
               первым в стране специализированным электротехническим вузом.</p>
-              <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-              onclick = "setBarScale(0.5)">войти внутрь</a>
+             <!-- <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+              onclick = "setBarScale(0.5)">войти внутрь</a>-->
+      </div>
+              <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+              onclick = "nextSlide()"> >></div>
            </div>`;
-      elem = changeTagName(document.getElementById('mainFrame'), 'canvas');
-      setPicture(2088,1174,'img/by_SPB_yellow_map_1882.png');
-      document.getElementById("MainInfoDiv").style.top = '17%';
+      elem = changeTagName(document.getElementById('mainFrame'), 'video');
+      elem.innerHTML = `<source src="video/1period3.mp4" type="video/mp4">`;
+      //setPicture(2088,1174,'img/by_SPB_yellow_map_1882.png');
 </script>
 </html>
