@@ -1,12 +1,3 @@
-// document.addEventListener('mousemove', e => {
-// 	Object.assign(document.documentElement, {
-// 		style: `
-// 		--move-x: ${(e.clientX - window.innerWidth / 2) * -.005}deg;
-// 		--move-y: ${(e.clientY - window.innerHeight / 2) * .01}deg;
-// 		`
-// 	})
-// })
-
 let canvas;
 let ctx;
 let image;
@@ -89,19 +80,20 @@ function drawCanvas() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         apply();
         ctx.drawImage(image, 0, 0, widthImg, heightImg, -widthImg/4, -heightImg/4, canvas.width*1.5, canvas.height*1.5);
+        update();
     }
     requestAnimationFrame(drawCanvas);
 }
 
 function mouseEvent(e) {
-    if (e.type === "mousedown")
-        mouse.dragging = true;
-    if (e.type === "mouseup" || e.type === "mouseout")
-        mouse.dragging = false;
-    mouse.oldX = mouse.x;
-    mouse.oldY = mouse.y;
-    mouse.x = e.offsetX;
-    mouse.y = e.offsetY
-    if (mouse.dragging)
-        pan({x: mouse.x - mouse.oldX, y: mouse.y - mouse.oldY});
+    // if (e.type === "mousedown")
+    //     mouse.dragging = true;
+    // if (e.type === "mouseup" || e.type === "mouseout")
+    //     mouse.dragging = false;
+    // mouse.oldX = mouse.x;
+    // mouse.oldY = mouse.y;
+    // mouse.x = e.offsetX;
+    // mouse.y = e.offsetY
+    // if (mouse.dragging)
+    //     pan({x: mouse.x - mouse.oldX, y: mouse.y - mouse.oldY});
 }

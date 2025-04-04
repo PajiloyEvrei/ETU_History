@@ -62,24 +62,31 @@
         --><a class="row_block period" onclick="setBarScale(7)" >1968-1992</a><!--
         --><a class="row_block period right" onclick="setBarScale(8)" >1992-X</a><!--
       --></div>
-      
-       <div id="mainFrame"> 
-            <div class = "main" id = "MainInfoDiv">
-              <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
-              <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
-              <p class = "text" id = "MainText"><img style="float: right; width: 400px; height: 250px;" src="img/Novoisakievskaya18.jpg">
-              В 1885 году Министром внутренних дел графом Д.А. Толстым в Государственный Совет был представлены проекты Положения, Устава и Штата высшего учебного заведения под названием «Телеграфный Институт», открытие которого было обусловлено острой потребностью России в собственных инженерных кадрах в области электросвязи.</p>
-              <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)'" onmouseout ="this.style.color = 'whitesmoke'" 
-              onclick = "setBarScale(0.5)">войти внутрь</a>
+      <div>
+<!--         <div id ="leftArrow" class="button">
+          <h1><<</h1>
+        </div>
+        <div id ="rightArrow" class="button">
+          <h1>>></h1>
+        </div> -->
 
-           </div>
-       </div>
 
-      <div id="objectInfo">
-        <div id="objectInfo_backButton" onclick="document.getElementById('objectInfo').style.height = '0'">\/</div>
-        <div id="objectInfo_information"></div>
+         <canvas id="mainFrame"> 
+         </canvas>
+        <div id = "mainInfo">
+          <div class = "main" id = "MainInfoDiv">
+
+          </div>
+        </div>
+
+        <div id="objectInfo_div">
+              <div id="objectInfo">
+                <div id="objectInfo_backButton" onclick="document.getElementById('objectInfo').style.height = '0';
+                document.getElementById('objectInfo_div').style.pointerEvents = 'none'">\/</div>
+                <div id="objectInfo_information"></div>
+              </div>
+        </div>
       </div>
-
 </body>
 
 <aside id="about">
@@ -87,7 +94,7 @@
       <li class="row_block about_block" >О нас</li>
       <li class="row_block about_block" >О проекте</li>
       <li class="row_block about_block" >Источники</li>
-      <li class="row_block about_block" onclick="document.getElementById('about').style.maxWidth = '0px'" >Назад</li>
+      <li class="row_block about_block" onclick="document.getElementById('about').style.maxWidth = '0px'">Назад</li>
   </ul>
 
   <div id="infoContent">
@@ -112,4 +119,25 @@
 <script src="js/app.js"></script>
 <script src="js/panorama.js"></script>
 <script src="js/main.js"></script>
+<script>
+      elem.innerHTML = "";
+      document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv">
+              <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
+              <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
+              <p class = "text" id = "MainText"><img style="float: right; width: 400px; height: 250px;" src="img/Novoisakievskaya18.jpg">
+             В конце 19-го века в России возникла потребность в собственных инженерных кадрах 
+              для телеграфной отрасли. По инициативе Министерства внутренних дел и графа Д.А. 
+              Толстого в 1885 году был разработан проект «Телеграфного Института», но 
+              Государственный Совет его отклонил, потребовав доработки. Через год был предложен 
+              компромиссный вариант — временное Техническое училище Почтово-телеграфного 
+              ведомства, который получил одобрение императора Александра III. Училище 
+              открылось в 1886 году в Санкт-Петербурге под руководством Н.Г. Писаревского, став 
+              первым в стране специализированным электротехническим вузом.</p>
+              <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+              onclick = "setBarScale(0.5)">войти внутрь</a>
+           </div>`;
+      elem = changeTagName(document.getElementById('mainFrame'), 'canvas');
+      setPicture(2088,1174,'img/by_SPB_yellow_map_1882.png');
+      document.getElementById("MainInfoDiv").style.top = '17%';
+</script>
 </html>

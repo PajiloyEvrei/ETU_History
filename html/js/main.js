@@ -101,11 +101,21 @@ function setStep(){
     switch(BAR_SCALE){
     case 0:
       elem.innerHTML = "";
+      document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv">
+              <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
+              <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
+              <p class = "text" id = "MainText"><img style="float: right; width: 400px; height: 250px;" src="img/Novoisakievskaya18.jpg">
+              В 1885 году Министром внутренних дел графом Д.А. Толстым в Государственный Совет был представлены проекты Положения, Устава и Штата высшего учебного заведения под названием «Телеграфный Институт», открытие которого было обусловлено острой потребностью России в собственных инженерных кадрах в области электросвязи.</p>
+              <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)'" onmouseout ="this.style.color = 'whitesmoke'" 
+              onclick = "setBarScale(0.5)">войти внутрь</a>
+
+           </div>`;
       elem = changeTagName(document.getElementById('mainFrame'), 'canvas');
       setPicture(2088,1174,'img/by_SPB_yellow_map_1882.png');
       break;
     case 0.5:
       elem.innerHTML = "";
+      document.getElementById("mainInfo").innerHTML = ""
       elem = changeTagName(document.getElementById('mainFrame'), 'div');//https://i.imgur.com/GFLxXVV.jpg    комната: https://imgur.com/jevL9av комнатаpen https://i.imgur.com/NUKbrbl.png"
       setPanorama( {
         texture: "https://i.imgur.com/TRW3kV5.jpeg",

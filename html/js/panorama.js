@@ -1,7 +1,6 @@
 
 
 function setPanorama(panor){
-
   let camera, scene, renderer, mesh, material, e, objects,
       imgData, uv, info, lon = 0, lat = 0, clx=0, dclx = 0;
 
@@ -43,6 +42,7 @@ function setPanorama(panor){
       addEventListener('resize', onWindowResize);
       animate();
   }
+
 
   function createMaterial(img, stencil) {
       let textureLoader = new THREE.TextureLoader();
@@ -118,7 +118,7 @@ function setPanorama(panor){
           let g = imgData.data[off+1];
           let b = imgData.data[off+2];
           info.innerHTML = objects[`${r},${g},${b}`];
-          if (objects[`${r},${g},${b}`] == 'building_3_left'){
+          if (typeof(objects[`${r},${g},${b}`]) != "undefined" || typeof(things[objects[`${r},${g},${b}`]]) != "undefined"){
             document.getElementById('mainFrame').style.cursor = "pointer";
           }
           else{
@@ -134,7 +134,8 @@ function setPanorama(panor){
                 objects: places[objects[`${r},${g},${b}`]]['objects']
               });
             } else{
-              document.getElementById('objectInfo').style.height = '500px';
+              document.getElementById('objectInfo_div').style.pointerEvents = 'all';
+              document.getElementById('objectInfo').style.height = '50%';
               document.getElementById('objectInfo_information').innerHTML = things[objects[`${r},${g},${b}`]];
             }
           }
