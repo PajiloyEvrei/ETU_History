@@ -51,6 +51,7 @@ let things = {
 //     } else { // IE8-
 //       elem.attachEvent("onmousewheel", onWheel);
 //   }
+let normal = true;
 
 function setBarScale(scale){
     BAR_SCALE = scale;
@@ -102,13 +103,23 @@ function changeTagName(el, newTagName) {
   return n;
 }
 
+function NormalMain(){
+  document.getElementById("MainInfoDiv").style.transition = 'height 0s, padding 0s, top 0s, left 0s, right 0s';
+  document.getElementById("MainInfoDiv").style.top = '20%';
+  document.getElementById("MainInfoDiv").style.backgroundColor = 'rgba(0, 0, 0, 0.4)';
+  document.getElementById("MainInfoDiv").className = "main row";
+  document.getElementById("MainInfoDiv").style.fontSize = '40px';
+  document.getElementById("MainInfoDiv").style.textAlign = 'left';
+  document.getElementById("MainInfoDiv").style.transition = 'height 4s, padding 4s, top 4s, left 1.7s, right 4s';
+}
+
 function setStep(){
   slide = 0;
   document.getElementById("start").style.opacity = '0';
     switch(BAR_SCALE){
-    case 0:
+    case 1:
       elem.innerHTML = "";
-      document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:17%; text-align: center; background-color: rgba(0,0,0,0)">
+      document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:0; text-align: center; background-color: rgba(0,0,0,0)">
               <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">Рождение университета</h3>
               <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 50px; opacity: 0;  transition: opacity 2s;"> Техническое училище Почтово-телеграфного ведомства</h4> 
       </div>`;
@@ -124,7 +135,7 @@ function setStep(){
       setTimeout(function(){document.getElementById("MainInfoDiv").style.textAlign = 'left';
         document.getElementById("MainInfoDiv").style.backgroundColor = "rgba(0,0,0,0.5)";
         document.getElementById("MainInfoDiv").className = "main row";
-      },6000);
+      },6500);
       },10000);
       //setPicture(2088,1174,'img/by_SPB_yellow_map_1882.png');
       break;
@@ -142,48 +153,31 @@ function setStep(){
       //   }
       // }
       break;
-    case 1:
+    case 0:
       elem.innerHTML = "";
-      document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:17%; text-align: center; background-color: rgba(0,0,0,0)">
-              <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">Электротехнический институт</h3>
+      document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:0; text-align: center; background-color: rgba(0,0,0,0)">
+              <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">Электротехнический институт <br> Александра III</h3>
+              <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 50px; opacity: 0;  transition: opacity 2s;"> </h4>
       </div>`;
       setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '1'},2000)
-      setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},5000)
+      setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},4000)
       elem = changeTagName(document.getElementById('mainFrame'), 'video');
-      setVideo('video/1period3.mp4');
+      setVideo('video/Alexandr_III.mp4');
       elem.play()
       setTimeout(function(){
-      setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '0'},1000)
-      setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '0'},2000)
-      setTimeout(function(){nextSlide()},5000)
+      setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '0'},0)
+      setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '0'},0)
+      setTimeout(function(){nextSlide()},1400)
       setTimeout(function(){document.getElementById("MainInfoDiv").style.textAlign = 'left';
         document.getElementById("MainInfoDiv").style.backgroundColor = "rgba(0,0,0,0.5)";
         document.getElementById("MainInfoDiv").className = "main row";
-      },6000);
-      },8000);
+      },3000);
+      },4000);
       break;
     case 1.5:
       break;
     case 2:
-      elem.innerHTML = "";
-      document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:17%; text-align: center; background-color: rgba(0,0,0,0)">
-              <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">Электротехнический институт<br>императора Александра III</h3>
-      </div>`;
-      setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '1'},2000)
-      setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},5000)
-      elem = changeTagName(document.getElementById('mainFrame'), 'video');
-      setVideo('video/1period3.mp4');
-      elem.play()
-      setTimeout(function(){
-      setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '0'},1000)
-      setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '0'},2000)
-      setTimeout(function(){nextSlide()},5000)
-      setTimeout(function(){document.getElementById("MainInfoDiv").style.textAlign = 'left';
-        document.getElementById("MainInfoDiv").style.backgroundColor = "rgba(0,0,0,0.5)";
-        document.getElementById("MainInfoDiv").className = "main row";
-      },6000);
-      },8000);
-      break;
+
       break;
     case 2.5:
       setPicture(w,h,src)
@@ -253,16 +247,20 @@ function newSlide(html){
       document.getElementById("MainInfoDiv").innerHTML = html;
       setTimeout(function(){ 
       document.getElementById("MainInfoDiv").style.transition = "height 4s, padding 4s, top 4s, left 1.7s";
-      document.getElementById("MainInfoDiv").style.left = "20%";},600);
+      document.getElementById("MainInfoDiv").style.left = "0%";},600);
       },1700);
 }
 
 function renderSlide(){
-  timeScrollSlow(1,1)
+  if(!normal){
+    setTimeout(function(){NormalMain();},1000);
+    normal = true;
+  }
   switch(BAR_SCALE){
-    case 0:
+    case 1:
       switch(slide){
       case 1:
+        timeScrollSlow(1,1)
         newSlide(`<div>
               <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Рождение университета</h3>
               <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> Техническое училище Почтово-телеграфного ведомства</h4> 
@@ -277,10 +275,11 @@ function renderSlide(){
               первым в стране специализированным электротехническим вузом. </p>
       </div>
               <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-              onclick = "nextSlide()"> >></div>`);
+              onclick = "nextSlide()"> >> </div>`);
         setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "100"},1000);
         break;
       case 2:
+        timeScrollSlow(1,1)
         newSlide(`<div>
               <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
               <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
@@ -290,68 +289,84 @@ function renderSlide(){
             Первым преподавателем физики стал профессор СПбГУ О.Д. Хвольсон, автор классического курса физики, изданного в России, Франции и Германии, а преподавателем химии - также выпускник СПбУ будущий профессор ЭТИ А.А. Кракау - основатель научной школы электрохимии в России.</p> 
       </div>
               <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-              onclick = "nextSlide()"> >></div>`);
+              onclick = "nextSlide()"> >> </div>`);
         break;
       case 3:
+        timeScrollSlow(1,1)
         newSlide(`<div>
               <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
               <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
               <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 200px; height: 250px;" src="img/vojnarovskij.jpg">
-             Из-за короткого срока обучения и долгой практики, которую студенты проходили отдалённых местах. Защитили диполмный проект и выпустилось очень мало людей, но многие из них в будущем стали известными учёными и стали сами преподавать. Так в 1889 году из первого выпуска были оставлены для подготовки к преподавательской деятельности П.С. Осадчий и В.А. Триумфов, а в 1890 году – П.Д. Войнаровский, что свидетельствует о высоком уровне подготовки уже первых выпускников Училища.</p>
+             Из-за короткого срока обучения и долгой практики, которую студенты проходили отдалённых местах. Защитили диполмный проект и выпустилось очень мало людей, но многие из них в будущем стали известными учёными и стали сами преподавать.<br> Так в 1889 году из первого выпуска были оставлены для подготовки к преподавательской деятельности П.С. Осадчий и В.А. Триумфов, а в 1890 году – П.Д. Войнаровский, что свидетельствует о высоком уровне подготовки уже первых выпускников Училища.</p>
              <!-- <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
               onclick = "setBarScale(0.5)">войти внутрь</a> -->
       </div>
               <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-              onclick = "setBarScale(1)"> >></div>`);
-        break;
+              onclick = "setBarScale(1)"> >> </div>`);
+        break
       }
       break;
-    case 1:
+    case 0:
       switch(slide){
         case 1:
+          timeScrollSlow(1,1)
           newSlide(`<div>
-                <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Рождение университета</h3>
-                <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> Техническое училище Почтово-телеграфного ведомства</h4> 
-                <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 500px; height: 300px;" src="img/telegraph19cen.jpg">
-                  В конце 19-го века в России проиходил бурный рост телеграфных линий, но почти все они обслуживались иностранными компаниями. Первый кто обратил внимание на проблему отсутсвия русских инженерных кадров в отрасли был Н.Г.Писаревский, видный общественный деятель , бывший в 1868 – 1885 годах инспектором Телеграфного ведомства.
-               <br><br>   По инициативе Министерства внутренних дел и графа Д.А. 
-                Толстого в 1885 году был разработан проект «Телеграфного Института», но 
-                Государственный Совет его отклонил, потребовав доработки. Через год был предложен 
-                компромиссный вариант — временное Техническое училище Почтово-телеграфного 
-                ведомства, который получил одобрение императора Александра III. Училище 
-                открылось в 1886 году в Санкт-Петербурге под руководством Н.Г. Писаревского, став 
-                первым в стране специализированным электротехническим вузом. </p>
+                <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Преобразование в институт</h3>
+                <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> </h4> 
+                <p class = "text" id = "MainText">
+                  11 (23) июня 1891 года император Александр III подписал указ о преобразовании Технического училища в Электротехнический институт (ЭТИ) с четырехлетним сроком обучения. 
+                  Учебный план был расширен до 20 дисциплин, из которых 7 – электротехнические, в Институте преподавали три иностранных языка. 
+                  <br>Директором ЭТИ был назначен Н.Г. Писаревский, а инспектором – А.А. Кракау. Учащиеся стали называться студентами. 
+                  Число студентов на всех курсах института было установлено в 120 человек, причем их обучение было бесплатным.</p>
         </div>
                 <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-                onclick = "nextSlide()"> >></div>`);
+                onclick = "nextSlide()"> >> </div>`);
           setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "100"},1000);
           break;
         case 2:
-          newSlide(`<div>
-                <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
-                <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
-                <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 400px; height: 250px;" src="img/Novoisakievskaya18.jpg">
-               Для Училища была приспособлена часть здания бывшего Телеграфного Департамента (Ново-Исаакиевская ул. д. 18).
-              <br><br>Несмотря на отсутвие статуса высшего учебного заведения, Писаревский приглашал много известных учёных для преподаваня. 
-              Первым преподавателем физики стал профессор СПбГУ О.Д. Хвольсон, автор классического курса физики, изданного в России, Франции и Германии, а преподавателем химии - также выпускник СПбУ будущий профессор ЭТИ А.А. Кракау - основатель научной школы электрохимии в России.</p> 
-        </div>
-                <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-                onclick = "nextSlide()"> >></div>`);
-          break;
+            timeScrollSlow(1,1.4)
+            setTimeout(
+              function(){ setVideo('video/T.mp4');
+              elem.play();
+              setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '1'},500)
+              setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},500)
+            },2200);
+            newSlide(`<div>
+                  <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Новый директор</h3>
+                  <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> Техническое училище Почтово-телеграфного ведомства</h4> 
+                  <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 250px; height: 300px;" src="img/kachalov.jpg">
+                    В связи со смертью Писаревского в июне 1895 года, директором ЭТИ был назначен Н.Н. Качалов. В своей деятельности на посту директора ЭТИ он многое сделал для его развития, реализуя планы, определённые ещё его предшественником. 
+                    <br> В конце 1897 года старшекурсники ЭТИ были впервые направлены в заграничную поездку для прохождения производственной практики, которая состоялась благодаря спонсорской поддержке фирмы «Сименс».
+                    <br> В 1899 году под руководством Кракау был введён курс электрохимии и организована первая в России электрохимическая лаборатория-практикум. </p>
+          </div>
+                  <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+                  onclick = "nextSlide()"> >> </div>`);
+            setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "100"},1000);
+        break;
         case 3:
-          newSlide(`<div>
-                <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
-                <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
-                <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 200px; height: 250px;" src="img/vojnarovskij.jpg">
-               Из-за короткого срока обучения и долгой практики, которую студенты проходили отдалённых местах. Защитили диполмный проект и выпустилось очень мало людей, но многие из них в будущем стали известными учёными и стали сами преподавать. Так в 1889 году из первого выпуска были оставлены для подготовки к преподавательской деятельности П.С. Осадчий и В.А. Триумфов, а в 1890 году – П.Д. Войнаровский, что свидетельствует о высоком уровне подготовки уже первых выпускников Училища.</p>
-               <!-- <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-                onclick = "setBarScale(0.5)">войти внутрь</a> -->
-        </div>
-                <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-                onclick = "setBarScale(1)"> >></div>`);
+          timeScrollSlow(1,1)
+          setTimeout(
+            function(){ setVideo('video/Popov.mp4');
+            elem.play();
+            document.getElementById("MainInfoDiv").style.backgroundColor = "rgba(0,0,0,0)";
+            document.getElementById("MainInfoDiv").className = "main";
+            document.getElementById("MainInfoDiv").style.transition = 'height 0s, padding 0s, top 0s, left 0s, right 0s';
+            document.getElementById("MainInfoDiv").style.textAlign = 'center'//height 4s, padding 4s, top 4s, left 4s, right 4s
+            document.getElementById("MainInfoDiv").style.top = '65%';
+            setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '1'},0)
+            setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},0)
+          },2200);//2200
+          normal = false;
+          newSlide(`
+                                  <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;"></h3>
+                                  <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 40px; opacity: 0;  transition: opacity 2s;"> 
+                                  Ярким событием стало выступление 31(19) октября 1897 <br> преподавателя Минного офицерского класса А.С. Попова 
+                                   <br>с докладом «О беспроволочной телеграфии» 
+                                   <br> <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+                                  onclick = "nextSlide()"> >> </a> </h4>
+                          `);
           break;
-      }
-      break;
+        }
     case 2:
       break;
     case 3:
@@ -400,7 +415,8 @@ function arrowDown() {
  document.getElementById('headerArrow').style.color = "black";
 }
 
-function setVideo(src){src //video/1period3.mp4
+function setVideo(src){ //video/1period3.mp4
+  elem.innerHTML = "";
   elem = changeTagName(document.getElementById('mainFrame'), 'video');
   elem.innerHTML = `<source src="${src}" type="video/mp4">`;
 }
@@ -456,6 +472,7 @@ function lineBaR(e) {
 function timeScrollSlow(sp,tim){
   elem.playbackRate = 1.0 * sp;
   elem.play()
+
   setTimeout(function(){
     setTimeout(function(){elem.playbackRate = 0.8 * sp;},200 * tim);
     setTimeout(function(){elem.playbackRate = 0.6 * sp;},250 * tim);
