@@ -59,8 +59,12 @@ function setBarScale(scale){
     } else if (BAR_SCALE < 0){
       BAR_SCALE = 0
     }
+    document.getElementById("start").style.transition = 'opacity 2s';
+    document.getElementById("start").style.opacity = '1';
     scalingBar();
-    setStep();
+    setTimeout(function(){
+      document.getElementById("start").style.transition = 'opacity 4s';
+      setStep();},2000)
 }
 
 function scalingBar(){
@@ -100,20 +104,29 @@ function changeTagName(el, newTagName) {
 
 function setStep(){
   slide = 0;
+  document.getElementById("start").style.opacity = '0';
     switch(BAR_SCALE){
     case 0:
       elem.innerHTML = "";
-      document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv">
-              <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
-              <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
-              <p class = "text" id = "MainText"><img style="float: right; width: 400px; height: 250px;" src="img/Novoisakievskaya18.jpg">
-              В 1885 году Министром внутренних дел графом Д.А. Толстым в Государственный Совет был представлены проекты Положения, Устава и Штата высшего учебного заведения под названием «Телеграфный Институт», открытие которого было обусловлено острой потребностью России в собственных инженерных кадрах в области электросвязи.</p>
-              <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)'" onmouseout ="this.style.color = 'whitesmoke'" 
-              onclick = "setBarScale(0.5)">войти внутрь</a>
-
-           </div>`;
-      elem = changeTagName(document.getElementById('mainFrame'), 'canvas');
-      setPicture(2088,1174,'img/by_SPB_yellow_map_1882.png');
+      document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:17%; text-align: center; background-color: rgba(0,0,0,0)">
+              <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">Рождение университета</h3>
+              <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 50px; opacity: 0;  transition: opacity 2s;"> Техническое училище Почтово-телеграфного ведомства</h4> 
+      </div>`;
+      setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '1'},2000)
+      setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},5000)
+      elem = changeTagName(document.getElementById('mainFrame'), 'video');
+      setVideo('video/1period3.mp4');
+      elem.play()
+      setTimeout(function(){
+      setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '0'},1000)
+      setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '0'},2000)
+      setTimeout(function(){nextSlide()},5000)
+      setTimeout(function(){document.getElementById("MainInfoDiv").style.textAlign = 'left';
+        document.getElementById("MainInfoDiv").style.backgroundColor = "rgba(0,0,0,0.5)";
+        document.getElementById("MainInfoDiv").className = "main row";
+      },6000);
+      },10000);
+      //setPicture(2088,1174,'img/by_SPB_yellow_map_1882.png');
       break;
     case 0.5:
       elem.innerHTML = "";
@@ -130,13 +143,47 @@ function setStep(){
       // }
       break;
     case 1:
-      setPicture(w,h,src)
+      elem.innerHTML = "";
+      document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:17%; text-align: center; background-color: rgba(0,0,0,0)">
+              <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">Электротехнический институт</h3>
+      </div>`;
+      setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '1'},2000)
+      setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},5000)
+      elem = changeTagName(document.getElementById('mainFrame'), 'video');
+      setVideo('video/1period3.mp4');
+      elem.play()
+      setTimeout(function(){
+      setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '0'},1000)
+      setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '0'},2000)
+      setTimeout(function(){nextSlide()},5000)
+      setTimeout(function(){document.getElementById("MainInfoDiv").style.textAlign = 'left';
+        document.getElementById("MainInfoDiv").style.backgroundColor = "rgba(0,0,0,0.5)";
+        document.getElementById("MainInfoDiv").className = "main row";
+      },6000);
+      },8000);
       break;
     case 1.5:
-      setPicture(w,h,src)
       break;
     case 2:
-      setPicture(w,h,src)
+      elem.innerHTML = "";
+      document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:17%; text-align: center; background-color: rgba(0,0,0,0)">
+              <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">Электротехнический институт<br>императора Александра III</h3>
+      </div>`;
+      setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '1'},2000)
+      setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},5000)
+      elem = changeTagName(document.getElementById('mainFrame'), 'video');
+      setVideo('video/1period3.mp4');
+      elem.play()
+      setTimeout(function(){
+      setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '0'},1000)
+      setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '0'},2000)
+      setTimeout(function(){nextSlide()},5000)
+      setTimeout(function(){document.getElementById("MainInfoDiv").style.textAlign = 'left';
+        document.getElementById("MainInfoDiv").style.backgroundColor = "rgba(0,0,0,0.5)";
+        document.getElementById("MainInfoDiv").className = "main row";
+      },6000);
+      },8000);
+      break;
       break;
     case 2.5:
       setPicture(w,h,src)
@@ -211,72 +258,99 @@ function newSlide(html){
 }
 
 function renderSlide(){
+  timeScrollSlow(1,1)
   switch(BAR_SCALE){
     case 0:
-      timeScroll()
       switch(slide){
-      case 0:
+      case 1:
         newSlide(`<div>
-              <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
-              <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
-              <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 400px; height: 250px;" src="img/Novoisakievskaya18.jpg">
-             В конце 19-го века в России возникла потребность в собственных инженерных кадрах 
-              для телеграфной отрасли. По инициативе Министерства внутренних дел и графа Д.А. 
+              <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Рождение университета</h3>
+              <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> Техническое училище Почтово-телеграфного ведомства</h4> 
+              <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 500px; height: 300px;" src="img/telegraph19cen.jpg">
+                В конце 19-го века в России проиходил бурный рост телеграфных линий, но почти все они обслуживались иностранными компаниями. Первый кто обратил внимание на проблему отсутсвия русских инженерных кадров в отрасли был Н.Г.Писаревский, видный общественный деятель , бывший в 1868 – 1885 годах инспектором Телеграфного ведомства.
+             <br><br>   По инициативе Министерства внутренних дел и графа Д.А. 
               Толстого в 1885 году был разработан проект «Телеграфного Института», но 
               Государственный Совет его отклонил, потребовав доработки. Через год был предложен 
               компромиссный вариант — временное Техническое училище Почтово-телеграфного 
               ведомства, который получил одобрение императора Александра III. Училище 
               открылось в 1886 году в Санкт-Петербурге под руководством Н.Г. Писаревского, став 
-              первым в стране специализированным электротехническим вузом.</p>
-             <!-- <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-              onclick = "setBarScale(0.5)">войти внутрь</a>-->
+              первым в стране специализированным электротехническим вузом. </p>
       </div>
               <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
               onclick = "nextSlide()"> >></div>`);
-        break;
-      case 1:
-        newSlide(`<div>
-              <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
-              <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
-              <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 400px; height: 250px;" src="img/Novoisakievskaya18.jpg">
-             В 1891 году после преобразования Технического училища в Электротехнический 
-              институт (ЭТИ) учебные программы были расширены до 20 дисциплин, включая 
-              углублённое изучение электротехники. Институт стал готовить телеграфных техников 
-              и инженеров, привлекая ведущих учёных (И.И. Боргман, М.А. Шателен, А.А. Кракау). 
-              В 1890-е годы открылись новые кафедры и лаборатории, а студенты начали проходить 
-              стажировки за рубежом. В 1898 году началось строительство нового здания, а 
-              покровителем ЭТИ стал великий князь Михаил Александрович. Институт укреплял 
-              научную базу, внедряя курсы по электромеханике и электрохимии, и стал центром 
-              передовых исследований, включая демонстрацию беспроводной телеграфии А.С. 
-              Попова. </p>
-             <!-- <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-              onclick = "setBarScale(0.5)">войти внутрь</a>-->
-      </div>
-              <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-              onclick = "nextSlide()"> >></div>`);
+        setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "100"},1000);
         break;
       case 2:
         newSlide(`<div>
               <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
               <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
               <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 400px; height: 250px;" src="img/Novoisakievskaya18.jpg">
-             В начале XX века Электротехнический институт (ЭТИ) укрепил статус ведущего вуза 
-              России, расширив учебные программы до 36 дисциплин и введя специализации: 
-              электротехнику, электросвязь и электрохимию. В 1899 году институт получил имя 
-              Александра III и стал пятикурсным, а его выпускники — инженерами-электриками. В 
-              1900–1903 годах построен новый корпус на Аптекарском острове с передовыми 
-              лабораториями. Вуз пережил революции и войны: после смерти А.С. Попова (1906) его 
-              возглавил П.Д. Войнаровский, внедривший разделение на отделы. В 1910-е годы ЭТИ 
-              стал центром энергетики (проекты Г.О. Графтио) и оборонных исследований. После 
-              Февральской революции 1917 года институт начал адаптацию к новой политической 
-              реальности.</p>
-             <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-              onclick = "setBarScale(0.5)">Почтово-Телеграфное училище сейчас</a>
-      </div>`);
+             Для Училища была приспособлена часть здания бывшего Телеграфного Департамента (Ново-Исаакиевская ул. д. 18).
+            <br><br>Несмотря на отсутвие статуса высшего учебного заведения, Писаревский приглашал много известных учёных для преподаваня. 
+            Первым преподавателем физики стал профессор СПбГУ О.Д. Хвольсон, автор классического курса физики, изданного в России, Франции и Германии, а преподавателем химии - также выпускник СПбУ будущий профессор ЭТИ А.А. Кракау - основатель научной школы электрохимии в России.</p> 
+      </div>
+              <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+              onclick = "nextSlide()"> >></div>`);
+        break;
+      case 3:
+        newSlide(`<div>
+              <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
+              <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
+              <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 200px; height: 250px;" src="img/vojnarovskij.jpg">
+             Из-за короткого срока обучения и долгой практики, которую студенты проходили отдалённых местах. Защитили диполмный проект и выпустилось очень мало людей, но многие из них в будущем стали известными учёными и стали сами преподавать. Так в 1889 году из первого выпуска были оставлены для подготовки к преподавательской деятельности П.С. Осадчий и В.А. Триумфов, а в 1890 году – П.Д. Войнаровский, что свидетельствует о высоком уровне подготовки уже первых выпускников Училища.</p>
+             <!-- <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+              onclick = "setBarScale(0.5)">войти внутрь</a> -->
+      </div>
+              <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+              onclick = "setBarScale(1)"> >></div>`);
         break;
       }
       break;
     case 1:
+      switch(slide){
+        case 1:
+          newSlide(`<div>
+                <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Рождение университета</h3>
+                <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> Техническое училище Почтово-телеграфного ведомства</h4> 
+                <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 500px; height: 300px;" src="img/telegraph19cen.jpg">
+                  В конце 19-го века в России проиходил бурный рост телеграфных линий, но почти все они обслуживались иностранными компаниями. Первый кто обратил внимание на проблему отсутсвия русских инженерных кадров в отрасли был Н.Г.Писаревский, видный общественный деятель , бывший в 1868 – 1885 годах инспектором Телеграфного ведомства.
+               <br><br>   По инициативе Министерства внутренних дел и графа Д.А. 
+                Толстого в 1885 году был разработан проект «Телеграфного Института», но 
+                Государственный Совет его отклонил, потребовав доработки. Через год был предложен 
+                компромиссный вариант — временное Техническое училище Почтово-телеграфного 
+                ведомства, который получил одобрение императора Александра III. Училище 
+                открылось в 1886 году в Санкт-Петербурге под руководством Н.Г. Писаревского, став 
+                первым в стране специализированным электротехническим вузом. </p>
+        </div>
+                <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+                onclick = "nextSlide()"> >></div>`);
+          setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "100"},1000);
+          break;
+        case 2:
+          newSlide(`<div>
+                <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
+                <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
+                <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 400px; height: 250px;" src="img/Novoisakievskaya18.jpg">
+               Для Училища была приспособлена часть здания бывшего Телеграфного Департамента (Ново-Исаакиевская ул. д. 18).
+              <br><br>Несмотря на отсутвие статуса высшего учебного заведения, Писаревский приглашал много известных учёных для преподаваня. 
+              Первым преподавателем физики стал профессор СПбГУ О.Д. Хвольсон, автор классического курса физики, изданного в России, Франции и Германии, а преподавателем химии - также выпускник СПбУ будущий профессор ЭТИ А.А. Кракау - основатель научной школы электрохимии в России.</p> 
+        </div>
+                <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+                onclick = "nextSlide()"> >></div>`);
+          break;
+        case 3:
+          newSlide(`<div>
+                <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
+                <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
+                <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 200px; height: 250px;" src="img/vojnarovskij.jpg">
+               Из-за короткого срока обучения и долгой практики, которую студенты проходили отдалённых местах. Защитили диполмный проект и выпустилось очень мало людей, но многие из них в будущем стали известными учёными и стали сами преподавать. Так в 1889 году из первого выпуска были оставлены для подготовки к преподавательской деятельности П.С. Осадчий и В.А. Триумфов, а в 1890 году – П.Д. Войнаровский, что свидетельствует о высоком уровне подготовки уже первых выпускников Училища.</p>
+               <!-- <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+                onclick = "setBarScale(0.5)">войти внутрь</a> -->
+        </div>
+                <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+                onclick = "setBarScale(1)"> >></div>`);
+          break;
+      }
       break;
     case 2:
       break;
@@ -297,6 +371,39 @@ function renderSlide(){
       break;
     }
 }
+let menu = false;
+function showMenu() {
+  if (menu){
+    arrowUp()
+    menu = false
+  } else{
+    arrowDown()
+    menu = true
+  }
+}
+
+function arrowUp(){
+ document.getElementById('mainFrame').style.top = "10px";
+ document.getElementById('mainFrame').style.height = "99%";
+ document.getElementById('headerArrow').style.top = "10px";
+ document.getElementById('menu').style.height = "0px";
+ document.getElementById('headerArrow').innerHTML = "|<br>V";
+ document.getElementById('headerArrow').style.color = "whitesmoke";
+}
+
+function arrowDown() {
+ document.getElementById('mainFrame').style.top = "100px";
+ document.getElementById('mainFrame').style.height = "90%";
+ document.getElementById('headerArrow').style.top = "100px";
+ document.getElementById('menu').style.height = "80px";
+ document.getElementById('headerArrow').innerHTML = "^<br>|";
+ document.getElementById('headerArrow').style.color = "black";
+}
+
+function setVideo(src){src //video/1period3.mp4
+  elem = changeTagName(document.getElementById('mainFrame'), 'video');
+  elem.innerHTML = `<source src="${src}" type="video/mp4">`;
+}
 
 function nextSlide(){
   slide+=1;
@@ -304,23 +411,23 @@ function nextSlide(){
 }
 
 function onWheel(e) {
-  e = e || window.event;
+//   e = e || window.event;
 
-  // wheelDelta не даёт возможность узнать количество пикселей
-  var delta = e.deltaY || e.detail || e.wheelDelta;
+//   // wheelDelta не даёт возможность узнать количество пикселей
+//   var delta = e.deltaY || e.detail || e.wheelDelta;
 
-  wheel+=delta
-  if (wheel > 150) {
-    BAR_SCALE+=0.5
-    wheel = 0
-    scalingBar(BAR_SCALE)
-  } else if (wheel < -150){
-    BAR_SCALE-=0.5
-    wheel = 0
-    scalingBar(BAR_SCALE)
-  }
+//   wheel+=delta
+//   if (wheel > 150) {
+//     BAR_SCALE+=0.5
+//     wheel = 0
+//     scalingBar(BAR_SCALE)
+//   } else if (wheel < -150){
+//     BAR_SCALE-=0.5
+//     wheel = 0
+//     scalingBar(BAR_SCALE)
+//   }
 
-  e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+//   e.preventDefault ? e.preventDefault() : (e.returnValue = false);
 }
 
 let line = document.getElementById('invisibleTriggerProgress');
@@ -346,34 +453,36 @@ function lineBaR(e) {
     }
 }
 
-function timeScroll(){
+function timeScrollSlow(sp,tim){
+  elem.playbackRate = 1.0 * sp;
   elem.play()
-  elem.playbackRate = 1.0;
-  setTimeout(function(){elem.playbackRate = 1.5;},200);
-  setTimeout(function(){elem.playbackRate = 2.0;},300);
-  setTimeout(function(){elem.playbackRate = 1.5;},400);
-  setTimeout(function(){elem.playbackRate = 2.0;},500);
-  setTimeout(function(){elem.playbackRate = 2.5;},600);
-  setTimeout(function(){elem.playbackRate = 3.0;},700);
-  setTimeout(function(){elem.playbackRate = 3.5;},800);
-
   setTimeout(function(){
-    setTimeout(function(){elem.playbackRate = 4.5;},50);
-    setTimeout(function(){elem.playbackRate = 3.5;},100);
-    setTimeout(function(){elem.playbackRate = 2.5;},150);
-    setTimeout(function(){elem.playbackRate = 1.5;},200);
-    setTimeout(function(){elem.playbackRate = 0.5;},250);
-    setTimeout(function(){elem.playbackRate = 0.1;},300);
-    setTimeout(function(){elem.pause();},450);
-  },4000);
+    setTimeout(function(){elem.playbackRate = 0.8 * sp;},200 * tim);
+    setTimeout(function(){elem.playbackRate = 0.6 * sp;},250 * tim);
+    setTimeout(function(){elem.pause();},450 * tim);
+  },3550* tim);
 }
 
-onload = () => {
-  document.getElementById("start").style.opacity = '0';   
-  elem.muted="muted"
-  document.getElementById("MainInfoDiv").style.top = '17%';
+function timeScrollFast(sp,tim){
   elem.play()
-  timeScroll();
+  elem.playbackRate = 1.0 * sp;
+  setTimeout(function(){elem.playbackRate = 1.5 * sp;},200 * tim);
+  setTimeout(function(){elem.playbackRate = 2.0 * sp;},300 * tim);
+  setTimeout(function(){elem.playbackRate = 1.5 * sp;},400 * tim);
+  setTimeout(function(){elem.playbackRate = 2.0 * sp;},500 * tim);
+  setTimeout(function(){elem.playbackRate = 2.5 * sp;},600 * tim);
+  setTimeout(function(){elem.playbackRate = 3.0 * sp;},700 * tim);
+  setTimeout(function(){elem.playbackRate = 3.5 * sp;},800 * tim);
+
+  setTimeout(function(){
+    setTimeout(function(){elem.playbackRate = 4.5 * sp;},50 * tim);
+    setTimeout(function(){elem.playbackRate = 3.5 * sp;},100 * tim);
+    setTimeout(function(){elem.playbackRate = 2.5 * sp;},150 * tim);
+    setTimeout(function(){elem.playbackRate = 1.5 * sp;},200 * tim);
+    setTimeout(function(){elem.playbackRate = 0.5 * sp;},250 * tim);
+    setTimeout(function(){elem.playbackRate = 0.1 * sp;},300 * tim);
+    setTimeout(function(){elem.pause();},450 * tim);
+  },4000 * tim);
 }
 
 

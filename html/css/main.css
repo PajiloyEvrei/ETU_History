@@ -48,8 +48,10 @@ nav {
 }
 
 header {
+	overflow: hidden;
 	display: flex;
-	height: 80px;
+	height: 0px;
+	transition: height 2s;
 }
 
 body {
@@ -62,6 +64,21 @@ canvas {
 	width: 100%;
 	height: 100%;
 }
+
+#headerArrow {
+	position: fixed;
+	with: 30px;
+	height: 30px;
+	top: 10px;
+	left: 30px;
+	color: white;
+	transition: top 2s;
+}
+
+#headerArrow:hover {
+	cursor: pointer;
+}
+
 .menu {
 	margin: auto;
 	position: sticky;
@@ -164,12 +181,14 @@ canvas {
 #mainFrame {
 	border-radius: 1%;
 	position: fixed;
-	top: 100px;
+	top: 10px;
 	z-index: -10;
-	width: 99%;
-	height: 90%;
+	left: 0px;
+	width: 100%;
+	height: 99%;
 	background-color: black;
 	overflow: hidden;
+	transition: height 2s, top 2s;
 }
 
 #about {
@@ -226,7 +245,7 @@ canvas {
 
 #MainInfoDiv {
 	position: fixed;
-	top: 100%;
+	top: 20%;
 	margin: auto;
 	left: 20%;
 	max-width: 65%;
@@ -258,6 +277,8 @@ canvas {
 
 #start {
 	position: fixed;
+	left: 0px;
+	top:0px;
 	width: 100%;
 	height: 100%;
 	background-color: black;
@@ -265,6 +286,14 @@ canvas {
 	z-index: 9999;
 	transition: opacity 4s;
 	pointer-events: none;
+}
+
+.shadow {
+	text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
 }
 
 #info {
@@ -329,6 +358,7 @@ canvas {
 	font-family: AvenirLTProLight;
 	width: 40px;
 	padding-top: 20%;
+	padding-right: 10px;
 	padding-bottom: 20%;
 	padding-left: 10px;
 	font-size: 25px;

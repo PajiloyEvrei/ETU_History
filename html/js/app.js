@@ -79,7 +79,7 @@ function drawCanvas() {
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         apply();
-        ctx.drawImage(image, 0, 0, widthImg, heightImg, -widthImg/4, -heightImg/4, canvas.width*1.5, canvas.height*1.5);
+        ctx.drawImage(image, 0, 0, widthImg, heightImg, 0, 0, canvas.width, canvas.height);
         update();
     }
     requestAnimationFrame(drawCanvas);
