@@ -117,7 +117,7 @@ function setStep(){
   slide = 0;
   document.getElementById("start").style.opacity = '0';
     switch(BAR_SCALE){
-    case 1:
+    case 0:
       elem.innerHTML = "";
       document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:0; text-align: center; background-color: rgba(0,0,0,0)">
               <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">Рождение университета</h3>
@@ -139,21 +139,7 @@ function setStep(){
       },10000);
       //setPicture(2088,1174,'img/by_SPB_yellow_map_1882.png');
       break;
-    case 0.5:
-      elem.innerHTML = "";
-      document.getElementById("mainInfo").innerHTML = ""
-      elem = changeTagName(document.getElementById('mainFrame'), 'div');//https://i.imgur.com/GFLxXVV.jpg    комната: https://imgur.com/jevL9av комнатаpen https://i.imgur.com/NUKbrbl.png"
-      setPanorama(places['building_3_right']);
-      // {
-      //   texture: "https://i.imgur.com/TRW3kV5.jpeg",
-      //   stencil: "https://i.imgur.com/iHRZiwM.png",
-      //   objects: {
-      //     "255,0,0": "building_3_left",
-      //     "250,0,0": "building_3_right",
-      //   }
-      // }
-      break;
-    case 0:
+    case 1:
       elem.innerHTML = "";
       document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:0; text-align: center; background-color: rgba(0,0,0,0)">
               <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">Электротехнический институт <br> Александра III</h3>
@@ -174,13 +160,40 @@ function setStep(){
       },3000);
       },4000);
       break;
-    case 1.5:
-      break;
     case 2:
-
+      elem.innerHTML = "";
+      document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:0; text-align: center; background-color: rgba(0,0,0,0)">
+              <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">ЭТИ в начале XIV века</h3>
+              <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 50px; opacity: 0;  transition: opacity 2s;">время перемен и потрясений</h4>
+      </div>`;
+      setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '1'},2000)
+      setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},4000)
+      elem = changeTagName(document.getElementById('mainFrame'), 'video');
+      setVideo('video/ETUold.mp4');
+      elem.play()
+      setTimeout(function(){
+      setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '0'},0)
+      setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '0'},0)
+      setTimeout(function(){nextSlide()},1400)
+      setTimeout(function(){document.getElementById("MainInfoDiv").style.textAlign = 'left';
+        document.getElementById("MainInfoDiv").style.backgroundColor = "rgba(0,0,0,0.5)";
+        document.getElementById("MainInfoDiv").className = "main row";
+      },3000);
+      },4000);
       break;
     case 2.5:
-      setPicture(w,h,src)
+      elem.innerHTML = "";
+      document.getElementById("mainInfo").innerHTML = ""
+      elem = changeTagName(document.getElementById('mainFrame'), 'div');//https://i.imgur.com/GFLxXVV.jpg    комната: https://imgur.com/jevL9av комнатаpen https://i.imgur.com/NUKbrbl.png"
+      setPanorama(places['building_3_right']);
+      // {
+      //   texture: "https://i.imgur.com/TRW3kV5.jpeg",
+      //   stencil: "https://i.imgur.com/iHRZiwM.png",
+      //   objects: {
+      //     "255,0,0": "building_3_left",
+      //     "250,0,0": "building_3_right",
+      //   }
+      // }
       break;
     case 3:
       setPicture(w,h,src)
@@ -257,7 +270,7 @@ function renderSlide(){
     normal = true;
   }
   switch(BAR_SCALE){
-    case 1:
+    case 0:
       switch(slide){
       case 1:
         timeScrollSlow(1,1)
@@ -276,7 +289,7 @@ function renderSlide(){
       </div>
               <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
               onclick = "nextSlide()"> >> </div>`);
-        setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "100"},1000);
+        setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "-1"},1000);
         break;
       case 2:
         timeScrollSlow(1,1)
@@ -306,7 +319,7 @@ function renderSlide(){
         break
       }
       break;
-    case 0:
+    case 1:
       switch(slide){
         case 1:
           timeScrollSlow(1,1)
@@ -321,7 +334,7 @@ function renderSlide(){
         </div>
                 <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
                 onclick = "nextSlide()"> >> </div>`);
-          setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "100"},1000);
+          setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "-2"},1000);
           break;
         case 2:
             timeScrollSlow(1,1.4)
@@ -341,7 +354,7 @@ function renderSlide(){
           </div>
                   <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
                   onclick = "nextSlide()"> >> </div>`);
-            setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "100"},1000);
+          setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "-1"},1000);
         break;
         case 3:
           timeScrollSlow(1,1)
@@ -358,16 +371,58 @@ function renderSlide(){
           },2200);//2200
           normal = false;
           newSlide(`
-                                  <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;"></h3>
-                                  <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 40px; opacity: 0;  transition: opacity 2s;"> 
-                                  Ярким событием стало выступление 31(19) октября 1897 <br> преподавателя Минного офицерского класса А.С. Попова 
-                                   <br>с докладом «О беспроволочной телеграфии» 
-                                   <br> <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-                                  onclick = "nextSlide()"> >> </a> </h4>
-                          `);
+                  <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;"></h3>
+                  <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 40px; opacity: 0;  transition: opacity 2s;"> 
+                  Ярким событием стало выступление 31(19) октября 1897 <br> преподавателя Минного офицерского класса А.С. Попова 
+                   <br>с докладом «О беспроволочной телеграфии» 
+                   <br> <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+                  onclick = "setBarScale(2)"> >> </a> </h4>
+                  `);
           break;
-        }
+      }
     case 2:
+      switch(slide){
+        case 1:
+          timeScrollSlow(1,1)
+          newSlide(`<div>
+                <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Переезд на Аптекарский остров</h3>
+                <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> </h4> 
+                <p class = "text" id = "MainText">
+                  Строительство институтского городка на Аптекарском острове стало важнейшим событием истории вуза в начале XX века. 
+                  На его создание была затрачена колоссальная сумма – 1,6 млн. руб., что превышало расходы института за первые 15 лет его существования. 
+                  Проектирование учебного корпуса выполнил академик архитекторы и преподаватель строительного дела в институте Александр Николаевич.
+                  Учебный корпус ЭТИ строился с учётом последних достижений строительной науки и техники. 
+                  К августу 1903 года все здания комплекса в основном были подготовлены, и институт перевели на Аптекарский остров.
+</p>
+        </div>
+                <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+                onclick = "nextSlide()"> >> </div>`);
+          setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "-2"},1000);
+          break;
+        case 2:
+          timeScrollSlow(1,1)
+          setTimeout(function(){
+            elem = changeTagName(document.getElementById('mainFrame'), 'div');
+            renderModel(elem);
+            document.getElementById("MainInfoDiv").style.backgroundColor = "rgba(0,0,0,0)";
+            document.getElementById("MainInfoDiv").className = "main";
+            document.getElementById("MainInfoDiv").style.transition = 'height 0s, padding 0s, top 0s, left 0s, right 0s';
+            document.getElementById("MainInfoDiv").style.textAlign = 'center'//height 4s, padding 4s, top 4s, left 4s, right 4s
+            document.getElementById("MainInfoDiv").style.top = '65%';
+            setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '1'},0)
+            setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},0)
+          },2200);//2200
+          normal = false;
+          newSlide(`
+                  <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;"></h3>
+                  <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 40px; opacity: 0;  transition: opacity 2s;"> 
+                  Здание ВУЗа на тот момент
+                   <br> <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+                  onclick = "setBarScale(2)"> >> </a> </h4>
+                  `);
+        break;
+        case 3:
+
       break;
     case 3:
       break;
