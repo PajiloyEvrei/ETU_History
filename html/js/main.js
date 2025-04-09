@@ -113,6 +113,24 @@ function NormalMain(){
   document.getElementById("MainInfoDiv").style.transition = 'height 4s, padding 4s, top 4s, left 1.7s, right 4s';
 }
 
+let intervalRewind;
+function rewind(rewindSpeed) {    
+   clearInterval(intervalRewind);
+   var startSystemTime = new Date().getTime();
+   var startVideoTime = elem.currentTime;
+   
+   intervalRewind = setInterval(function(){
+       elem.playbackRate = 1.0;
+       if(elem.currentTime == 0){
+           clearInterval(intervalRewind);
+           elem.pause();
+       } else {
+           var elapsed = new Date().getTime()-startSystemTime;
+           elem.currentTime = Math.max(startVideoTime - elapsed*rewindSpeed/1000.0, 0);
+       }
+   }, 30);
+}
+
 function setStep(){
   slide = 0;
   document.getElementById("start").style.opacity = '0';
@@ -131,7 +149,7 @@ function setStep(){
       setTimeout(function(){
       setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '0'},1000)
       setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '0'},2000)
-      setTimeout(function(){nextSlide()},5000)
+      setTimeout(function(){nextSlide(1.7);timeScrollSlow(1,1)},5000)
       setTimeout(function(){document.getElementById("MainInfoDiv").style.textAlign = 'left';
         document.getElementById("MainInfoDiv").style.backgroundColor = "rgba(0,0,0,0.5)";
         document.getElementById("MainInfoDiv").className = "main row";
@@ -153,7 +171,7 @@ function setStep(){
       setTimeout(function(){
       setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '0'},0)
       setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '0'},0)
-      setTimeout(function(){nextSlide()},1400)
+      setTimeout(function(){nextSlide(1.7);timeScrollSlow(1,1)},1400)
       setTimeout(function(){document.getElementById("MainInfoDiv").style.textAlign = 'left';
         document.getElementById("MainInfoDiv").style.backgroundColor = "rgba(0,0,0,0.5)";
         document.getElementById("MainInfoDiv").className = "main row";
@@ -174,7 +192,7 @@ function setStep(){
       setTimeout(function(){
       setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '0'},0)
       setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '0'},0)
-      setTimeout(function(){nextSlide()},1400)
+      setTimeout(function(){nextSlide(1.7);timeScrollSlow(1,1)},1400)
       setTimeout(function(){document.getElementById("MainInfoDiv").style.textAlign = 'left';
         document.getElementById("MainInfoDiv").style.backgroundColor = "rgba(0,0,0,0.5)";
         document.getElementById("MainInfoDiv").className = "main row";
@@ -251,20 +269,33 @@ function setStep(){
   }
 }
 
-function newSlide(html){
-      document.getElementById("MainInfoDiv").style.transition = "height 4s, padding 4s, top 4s, left 1.7s";
+function newSlide(html,sp){
+  if(sp < 0){
+      document.getElementById("MainInfoDiv").style.transition = `height 4s, padding 4s, top 4s, left ${sp}s`;
+      document.getElementById("MainInfoDiv").style.left = "100%";
+      setTimeout(function(){ 
+      document.getElementById("MainInfoDiv").style.transition = "height 4s, padding 4s, top 4s";
+      document.getElementById("MainInfoDiv").style.left = "-100%";
+      document.getElementById("MainInfoDiv").innerHTML = html;
+      setTimeout(function(){ 
+      document.getElementById("MainInfoDiv").style.transition = `height 4s, padding 4s, top 4s, left ${sp}s`;
+      document.getElementById("MainInfoDiv").style.left = "0%";},600);
+      },1700);
+  }else{
+      document.getElementById("MainInfoDiv").style.transition = `height 4s, padding 4s, top 4s, left ${sp}s`;
       document.getElementById("MainInfoDiv").style.left = "-100%";
       setTimeout(function(){ 
       document.getElementById("MainInfoDiv").style.transition = "height 4s, padding 4s, top 4s";
       document.getElementById("MainInfoDiv").style.left = "100%";
       document.getElementById("MainInfoDiv").innerHTML = html;
       setTimeout(function(){ 
-      document.getElementById("MainInfoDiv").style.transition = "height 4s, padding 4s, top 4s, left 1.7s";
+      document.getElementById("MainInfoDiv").style.transition = `height 4s, padding 4s, top 4s, left ${sp}s`;
       document.getElementById("MainInfoDiv").style.left = "0%";},600);
       },1700);
+    }
 }
 
-function renderSlide(){
+function renderSlide(sp){
   if(!normal){
     setTimeout(function(){NormalMain();},1000);
     normal = true;
@@ -273,7 +304,6 @@ function renderSlide(){
     case 0:
       switch(slide){
       case 1:
-        timeScrollSlow(1,1)
         newSlide(`<div>
               <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Рождение университета</h3>
               <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> Техническое училище Почтово-телеграфного ведомства</h4> 
@@ -288,11 +318,10 @@ function renderSlide(){
               первым в стране специализированным электротехническим вузом. </p>
       </div>
               <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-              onclick = "nextSlide()"> >> </div>`);
-        setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "-1"},1000);
+              onclick = "nextSlide(1.7);timeScrollSlow(1,1)"> >> </div>`,sp);
+        setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "-3"},1000);
         break;
       case 2:
-        timeScrollSlow(1,1)
         newSlide(`<div>
               <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
               <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
@@ -302,10 +331,9 @@ function renderSlide(){
             Первым преподавателем физики стал профессор СПбГУ О.Д. Хвольсон, автор классического курса физики, изданного в России, Франции и Германии, а преподавателем химии - также выпускник СПбУ будущий профессор ЭТИ А.А. Кракау - основатель научной школы электрохимии в России.</p> 
       </div>
               <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-              onclick = "nextSlide()"> >> </div>`);
+              onclick = "nextSlide(1.7);timeScrollSlow(1,1)"> >> </div>`,sp);
         break;
       case 3:
-        timeScrollSlow(1,1)
         newSlide(`<div>
               <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
               <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
@@ -315,7 +343,7 @@ function renderSlide(){
               onclick = "setBarScale(0.5)">войти внутрь</a> -->
       </div>
               <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-              onclick = "setBarScale(1)"> >> </div>`);
+              onclick = "setBarScale(1)"> >> </div>`,sp);
         break
       }
       break;
@@ -327,14 +355,14 @@ function renderSlide(){
                 <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Преобразование в институт</h3>
                 <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> </h4> 
                 <p class = "text" id = "MainText">
-                  11 (23) июня 1891 года император Александр III подписал указ о преобразовании Технического училища в Электротехнический институт (ЭТИ) с четырехлетним сроком обучения. 
+                  11 (23) июня 1891 года император Александр III подписал указ о преобразовании Технического училища в Электротехнический института (ЭТИ) с четырехлетним сроком обучения. 
                   Учебный план был расширен до 20 дисциплин, из которых 7 – электротехнические, в Институте преподавали три иностранных языка. 
                   <br>Директором ЭТИ был назначен Н.Г. Писаревский, а инспектором – А.А. Кракау. Учащиеся стали называться студентами. 
                   Число студентов на всех курсах института было установлено в 120 человек, причем их обучение было бесплатным.</p>
         </div>
                 <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-                onclick = "nextSlide()"> >> </div>`);
-          setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "-2"},1000);
+                onclick = "nextSlide(1.7);timeScrollSlow(1,1)"> >> </div>`,sp);
+          setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "-3"},1000);
           break;
         case 2:
             timeScrollSlow(1,1.4)
@@ -353,8 +381,8 @@ function renderSlide(){
                     <br> В 1899 году под руководством Кракау был введён курс электрохимии и организована первая в России электрохимическая лаборатория-практикум. </p>
           </div>
                   <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-                  onclick = "nextSlide()"> >> </div>`);
-          setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "-1"},1000);
+                  onclick = "nextSlide(1.7);timeScrollSlow(1,1)"> >> </div>`,sp);
+          setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "-3"},1000);
         break;
         case 3:
           timeScrollSlow(1,1)
@@ -377,7 +405,7 @@ function renderSlide(){
                    <br>с докладом «О беспроволочной телеграфии» 
                    <br> <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
                   onclick = "setBarScale(2)"> >> </a> </h4>
-                  `);
+                  `,sp);
           break;
       }
     case 2:
@@ -396,14 +424,14 @@ function renderSlide(){
 </p>
         </div>
                 <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-                onclick = "nextSlide()"> >> </div>`);
-          setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "-2"},1000);
+                onclick = "nextSlide(1.7);timeScrollSlow(1,1)"> >> </div>`,sp);
+          setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "-3"},1000);
           break;
         case 2:
-          timeScrollSlow(1,1)
+          timeScrollSlow(1,2)
           setTimeout(function(){
-            elem = changeTagName(document.getElementById('mainFrame'), 'div');
-            renderModel(elem);
+            //elem = changeTagName(document.getElementById('mainFrame'), 'div');
+            //enderModel(elem);
             document.getElementById("MainInfoDiv").style.backgroundColor = "rgba(0,0,0,0)";
             document.getElementById("MainInfoDiv").className = "main";
             document.getElementById("MainInfoDiv").style.transition = 'height 0s, padding 0s, top 0s, left 0s, right 0s';
@@ -419,10 +447,11 @@ function renderSlide(){
                   Здание ВУЗа на тот момент
                    <br> <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
                   onclick = "setBarScale(2)"> >> </a> </h4>
-                  `);
+                  `,sp);
         break;
-        case 3:
-
+        case 3: 
+        break;
+      }
       break;
     case 3:
       break;
@@ -476,9 +505,14 @@ function setVideo(src){ //video/1period3.mp4
   elem.innerHTML = `<source src="${src}" type="video/mp4">`;
 }
 
-function nextSlide(){
-  slide+=1;
-  renderSlide()
+function nextSlide(sp){
+  if(sp<0){
+    slide-=1;
+  }
+  else{
+    slide+=1;
+  }  
+  renderSlide(sp)
 }
 
 function onWheel(e) {
@@ -525,14 +559,33 @@ function lineBaR(e) {
 }
 
 function timeScrollSlow(sp,tim){
-  elem.playbackRate = 1.0 * sp;
-  elem.play()
+  clearInterval(intervalRewind);
+  if(sp < 0){
+    rewind
+    clearInterval(intervalRewind);
+    rewind(1.0 * sp * -1);
+    elem.play()
 
-  setTimeout(function(){
-    setTimeout(function(){elem.playbackRate = 0.8 * sp;},200 * tim);
-    setTimeout(function(){elem.playbackRate = 0.6 * sp;},250 * tim);
-    setTimeout(function(){elem.pause();},450 * tim);
-  },3550* tim);
+    setTimeout(function(){
+      setTimeout(function(){rewind(0.8 * sp);},200 * tim);
+      setTimeout(function(){rewind(0.6 * sp);},250 * tim);
+      setTimeout(function(){    
+        clearInterval(intervalRewind);
+        elem.playbackRate = 1.0;
+        elem.pause();},450 * tim);
+    },3550* tim);
+  }
+  else {
+    clearInterval(intervalRewind);
+    elem.playbackRate = 1.0 * sp;
+    elem.play()
+
+    setTimeout(function(){
+      setTimeout(function(){elem.playbackRate = 0.8 * sp;},200 * tim);
+      setTimeout(function(){elem.playbackRate = 0.6 * sp;},250 * tim);
+      setTimeout(function(){elem.pause();},450 * tim);
+    },3550* tim);
+  }
 }
 
 function timeScrollFast(sp,tim){
