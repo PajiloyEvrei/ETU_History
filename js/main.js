@@ -549,7 +549,7 @@ function setStep(){
     case 9:
             elem.innerHTML = "";
       document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:0; text-align: center; background-color: rgba(0,0,0,0)">
-              <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">ЛЭТИ сковзь историю</h3> <br>
+              <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">ЛЭТИ сковозь историю</h3> <br>
               <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 50px; opacity: 0;  transition: opacity 2s;">работа выполнена командой "c.cpp"</h4>
       </div>`;
       setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '1'},2000)
