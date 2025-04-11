@@ -1,0 +1,394 @@
+
+@font-face {
+	font-family: AvenirNextLTPro-Bold;
+	src: url(../fonts/AvenirNextLTPro-Bold.ttf);
+}
+@font-face {
+	font-family: AvenirLTProBlack;
+	src: url(../fonts/AvenirLTProBlack.otf);
+}
+@font-face {
+	font-family: AvenirLTProBook;
+	src: url(../fonts/AvenirLTProBook.otf);
+}
+@font-face {
+	font-family: AvenirLTProHeavy;
+	src: url(../fonts/AvenirLTProHeavy.otf);
+}
+@font-face {
+	font-family: AvenirLTProLight;
+	src: url(../fonts/AvenirLTProLight.otf);
+}
+@font-face {
+	font-family: AvenirLTProMedium;
+	src: url(../fonts/AvenirLTProMedium.otf);
+}
+@font-face {
+	font-family: AvenirLTProRoman;
+	src: url(../fonts/AvenirLTProRoman.otf);
+}
+@font-face {
+	font-family: Industry-Bold_RUS;
+	src: url(../fonts/Industry-Bold_RUS.ttf);
+}
+@font-face {
+	font-family: AvenirLTProHeavy;
+	src: url(../fonts/AvenirLTProHeavy.otf);
+}
+@font-face {
+	font-family: Roboto;
+	src: url(../fonts/RobotoCondensed-VariableFont_wght.ttf);
+}
+a {
+  text-decoration: none;
+}
+
+nav {
+	position: sticky;
+}
+
+header {
+	overflow: hidden;
+	display: flex;
+	height: 0px;
+	transition: height 2s;
+}
+
+body {
+	background-color: rgb(30, 30, 30);
+	color: rgb(149, 126, 94);
+	font-family: "Roboto";
+	transition: color 1s, background-color 1s;
+}
+canvas {
+	width: 100%;
+	height: 100%;
+}
+
+.headerArrow {
+	position: fixed;
+	with: 30px;
+	height: 30px;
+	top: 15px;
+	left: 30px;
+	transition: top 2s, opacity 1s;
+}
+
+#headerArrow:hover {
+	cursor: pointer;
+}
+
+.menu {
+	margin: auto;
+	position: sticky;
+	height: 30px;
+	width: 540px;
+  font-size: 20px;
+  border: 1px solid #242322;
+}
+
+.menu_block {
+	width: 180px;
+	text-align: center;
+}
+
+.row {
+  display: flex;  
+  flex-direction: row;
+  text-align: center;
+}
+
+.row_block {
+	display: inline-block;
+}
+
+.period {
+	width: 151px;
+	margin: auto;
+  border-right: 1px dashed rgba(255, 255, 255, 0.5);
+  height: 20px;
+  padding: 10px;
+}
+
+.right{
+	border-right: 0px;
+}
+
+#invisibleTriggerProgress {
+	z-index: -1;
+	position: fixed;
+	height: 40px;
+	width: 1540px;
+}
+
+#progressBarLine {
+	position: fixed;
+	background-color: whitesmoke;
+	color: black;
+	margin: auto;
+  max-height: 5px;
+	width: 5px;
+	overflow: hidden;
+	transition: max-height 1.5s, width 1s;
+	white-space: nowrap;
+}
+
+#progressBar {
+	position: fixed;
+	color: white;
+	max-width: 1540px;
+	font-size: 18px;
+	position: -webkit-sticky;
+	position: sticky;
+  margin: auto;
+  max-height: 5px;
+  overflow: hidden;
+  transition: max-height 1.5s, background 1s;
+}
+
+#progressBar:hover, #progressBarLine:hover {
+  /*max-height: 40px;*/
+  cursor: pointer;
+}
+
+#title {
+	font-size: 24px;
+	font-family: Industry-Bold_RUS;
+	text-align: right;
+	width: 322;
+	margin-right: 50px;
+	border-left: 1px dashed rgba(255, 255, 255, 0.3);
+	padding-left: 10px;
+}
+
+#logo {
+	max-width: 75px;
+	max-height: 75px;
+	display: inline-block;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 10px;
+}
+
+#logoText {
+	position: relative;
+	bottom: 20px;
+	text-align: center;
+	display: inline-block;
+}
+
+#mainFrame {
+	border-radius: 0%;
+	position: fixed;
+	top: 10px;
+	z-index: -3;
+	left: 0px;
+	width: 100%;
+	height: 99%;
+	background-color: black;
+	overflow: hidden;
+	transition: height 2s, top 2s;
+}
+
+#about {
+	font-family: "Roboto";
+	white-space: nowrap;
+	position: fixed;
+	color: black;
+	top: 0px;
+	height: 100%;
+	background-color: whitesmoke;
+	max-width: 0px;
+	overflow: hidden;
+	transition: max-width 1.5s;
+}
+
+.blocks_inner{
+	margin: 39px auto 23px auto;
+	max-height: 60px;
+	text-transform: uppercase;
+	vertical-align: baseline;
+	display: block;
+}
+
+.about_block {
+	color: rgba(0, 0, 0, 0.4);
+	overflow: hidden;
+	display: inline-block;
+  padding: 0 2.2em 0 0;
+}
+
+.about_block:hover {
+	color: rgba(0, 0, 0, 1);
+	cursor: pointer;
+}
+
+#infoContent{
+	overflow: scroll;
+}
+
+.textBox {
+	border-top: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+#aboutButton {
+	text-transform: uppercase;
+	color: body.color;
+	margin: auto;
+}
+
+#aboutButton:hover {
+	color: whitesmoke;
+	cursor: pointer;
+}
+
+#MainInfoDiv {
+	z-index: -3;
+	position: fixed;
+	top: 20%;
+	left: 0px;
+	width: 60%;
+	margin-left: 20%;
+	margin-right: 20%;
+	max-width: 50%;
+	max-height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	border-radius: 1%;
+	color: white;
+	font-size: 40px;
+	text-align: left;
+	padding: 30px;
+	padding-right: 0px;
+	font-family: "Roboto";
+	transition: height 4s, padding 4s, top 4s, left 4s, right 4s;
+	overflow: hidden;
+	min-width: 1045px;
+	flex-wrap: nowrap;
+}
+
+.text {
+	font-size: 20px;
+	margin-top: 40px;
+	overflow: hidden;
+	width: 1000px;
+}
+.main{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#start {
+	position: fixed;
+	left: 0px;
+	top:0px;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 1;
+	z-index: -1;
+	transition: opacity 4s;
+	pointer-events: none;
+}
+
+.shadow {
+	text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
+}
+
+#info {
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    padding: 0 10px 0 10px;
+    opacity: 0;
+}
+
+#objectInfo {
+	font-family: "Roboto";
+	border-top-left-radius: 1%;
+	border-top-right-radius: 1%;
+	border: 2px solid rgba(255, 255, 255, 0.4);
+	font-size: 20px;
+	opacity: 0;
+	position: fixed;
+	color: white;
+	bottom: 0px;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 50%;
+	left: 0;
+	height: 0px;
+	background-color: rgba(0, 0, 0, 0.4);
+	width: 60%;
+	overflow: hidden;
+	transition: height 1.5s, opacity 1s;
+}
+
+#objectInfo_div {
+	position: fixed;
+	bottom: 0px;
+	left: 0;
+	width: 100%;
+	height: 85%;
+	pointer-events: none;
+}
+#objectInfo_backButton {
+	margin: auto;
+	width: 100%;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.4);
+}
+
+#objectInfo_backButton:hover {
+	color: rgba(255, 255, 255,1);
+	cursor: pointer;
+}
+
+#objectInfo_information {
+	border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+#cursor {
+	position: absolute;
+
+}
+
+#rightArrow {
+	font-family: AvenirLTProLight;
+	width: 40px;
+	padding-top: 20%;
+	padding-right: 10px;
+	padding-bottom: 20%;
+	padding-left: 10px;
+	font-size: 25px;
+	text-align: center;
+	mergin-left: 10px;
+	wrap: nowrap;
+	overflow: hidden;
+}
+
+#leftArrow {
+	font-family: AvenirLTProLight;
+	position: fixed;
+	bottom: 88%;
+	left: 5px;
+	top: 70px;
+	width: 40px;
+	font-size: 15px;
+	text-align-ve: middle;
+	text-align: center;
+}
+
+
+.button {
+	color: whitesmoke;
+}
+
+.button:hover {
+	color: rgba(255, 255, 255, 0.4);
+	cursor: pointer;
+}
