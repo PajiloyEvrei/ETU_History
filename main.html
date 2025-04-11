@@ -16,11 +16,11 @@
       <div style="  height: 40px; width: 150px; text-align: center; padding: 20px; border-right: 1px dashed rgba(255, 255, 255, 0.3);">
         <a id="aboutButton" onclick="document.getElementById('about').style.maxWidth = '500px'">Информация</a>
       </div>
-
+<!--
       <audio id = "soundtrack" type="audio/mpeg" src="music/Glazunov.mp3" muted = "false" loop= "loop">
       <p>Если вы видите это, ваш браузер audio.</p>
       </audio>
-
+-->
       <div style="margin: auto"></div>
 
       <div id = "title" style= "padding-left: 15px">
@@ -62,7 +62,7 @@
         <img src = "img/free-icon.svg" style="width: 20px; height: 20;">
       </div>
       <div class="headerArrow" id = "volume" style = "left: 70px" onclick="mute()">
-        <img src = "img/volume.svg" id="volume_img" style="width: 20px; height: 20;">
+        <p src = "img/volume.svg" id="volume_img" style="width: 20px; height: 20;"></p>
       </div>
 
       <div id="next" style = "position: fixed; right: 30px; bottom: 30px; opacity: 0;">
@@ -100,7 +100,7 @@
   <ul class="row blocks_inner">
       <li class="row_block about_block" >О нас</li>
       <li class="row_block about_block" >О проекте</li>
-      <li class="row_block about_block" >Источники</li>
+      <!--<li class="row_block about_block" >Источники</li>-->
       <li class="row_block about_block" onclick="document.getElementById('about').style.maxWidth = '0px'">Назад</li>
   </ul>
 

@@ -376,7 +376,7 @@ function setStep(){
       elem.innerHTML = "";
       document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:0; text-align: center; background-color: rgba(0,0,0,0)">
               <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">ЭТИ в начале XIV века</h3>
-              <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 50px; opacity: 0;  transition: opacity 2s;">время перемен и потрясений</h4>
+              <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 50px; opacity: 0;  transition: opacity 2s;"></h4>
       </div>`;
       setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '1'},2000)
       setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},2500)
@@ -424,7 +424,7 @@ function setStep(){
             elem.innerHTML = "";
       document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:0; text-align: center; background-color: rgba(0,0,0,0)">
               <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">30-e годы</h3> <br>
-              <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 50px; opacity: 0;  transition: opacity 2s;">тяжелые времена</h4>
+              <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 50px; opacity: 0;  transition: opacity 2s;"></h4>
       </div>`;
       setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '1'},2000)
       setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},3000)
@@ -522,7 +522,7 @@ function setStep(){
       elem.innerHTML = "";
       document.getElementById("mainInfo").innerHTML = `<div class = "main" id = "MainInfoDiv" style="left:0; text-align: center; background-color: rgba(0,0,0,0)">
               <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;">Наши дни</h3><br>
-              <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 50px; opacity: 0;  transition: opacity 2s;"> СПБГЭТУ "ЛЭТИ"</h4> 
+              <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 50px; opacity: 0;  transition: opacity 2s;"> СПбГЭТУ "ЛЭТИ"</h4> 
       </div>`;
       setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '1'},2000)
       setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},5000)
@@ -539,7 +539,6 @@ function setStep(){
         document.getElementById("MainInfoDiv").className = "main row";
       },6500);
       },7000);
-      break;
       break;
     case 8.5:
       elem.innerHTML = "";
@@ -785,8 +784,8 @@ function renderSlide(sp){
                 setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},500)
               },2200);
               newSlide(`<div>
-                    <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Развитие в тяжелые времена</h3><br>
-                    <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;">Инстит на гребене новой власти</h4> 
+                    <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Важная роль</h3><br>
+                    <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;">Институт на гребене новой власти</h4> 
                     <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 400px; height: 250px;" src="img/TEC.jpg">
                        Советская власть планировала индустриализацию и электрофикацию. Важнейшее значение в этом имел Государственный план электрификации России (ГОЭЛРО), который был разработан в рекордно короткие сроки. Этому в немалой степени способствовали предварительные изыскания и разработанные учеными ЭТИ до 1916 года проекты.
                        <br> ЭТИ играл в важную роль. Преподавали учавствовали в строительстве многих ТЭЦ, ГЭС, проведении магистралей тепло и энергоснабжения</p>
@@ -866,31 +865,8 @@ function renderSlide(sp){
                 </div>
             </div>
                     <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-                    onclick = "if(clickCheck){nextSlide(1.7);timeScrollSlow(1,1);clickCheck = false}"> >> </div>`,sp);
+                    onclick = "if(clickCheck){setBarScale(5);clickCheck = false}"> >> </div>`,sp);
             setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "-3"},1000);
-        break;
-        case 3:
-            setTimeout(function(){
-            //elem = changeTagName(document.getElementById('mainFrame'), 'div');
-            //enderModel(elem);v
-            setVideo('video/GES.mp4');
-            elem.play();
-            document.getElementById("MainInfoDiv").style.backgroundColor = "rgba(0,0,0,0)";
-            document.getElementById("MainInfoDiv").className = "main";
-            document.getElementById("MainInfoDiv").style.transition = 'height 0s, padding 0s, top 0s, left 0s, right 0s';
-            document.getElementById("MainInfoDiv").style.textAlign = 'center'//height 4s, padding 4s, top 4s, left 4s, right 4s
-            document.getElementById("MainInfoDiv").style.top = '65%';
-            setTimeout(function(){document.getElementById("MainHeadline").style.opacity = '1'},0)
-            setTimeout(function(){document.getElementById("MainHeadinfo").style.opacity = '1'},0)
-          },2200);//2200
-          normal = false;
-          newSlide(`
-                  <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;"></h3>
-                  <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 40px; opacity: 0;  transition: opacity 2s;"> 
-                  Важным событием стало строительство Волховской ГЭС, которое возглавлял Г.О. Графтио
-                   <br> <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-                  onclick = "if(clickCheck){nextSlide(1.7);timeScrollSlow(1,1.4);clickCheck = false}"> >> </a> </h4>
-                  `,sp);
         break;
         }
       break;
@@ -914,7 +890,13 @@ function renderSlide(sp){
                   <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 40px; opacity: 0;  transition: opacity 2s;"> 
                    1941-й год 22 июня. Без объявления войны Германия вторглась на территорию Советского Союза, нарушив пакт о ненападении.
                   <br> <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
-                  onclick = "if(clickCheck){document.getElementById('start').style.opacity = '1'; setTimeout(function(){nextSlide(3);timeScrollSlow(3,1);setTimeout(function(){document.getElementById('start').style.opacity = '0'},2000)},4000)" ;clickCheck = false}"> >> </a> </h4>
+                   
+                  onclick = "                  if(clickCheck){
+                    document.getElementById('start').style.opacity = '1'; 
+                    setTimeout(function(){
+                    nextSlide(3);timeScrollSlow(3,1);
+                    setTimeout(function(){document.getElementById('start').style.opacity = '0'},2000)},4000);clickCheck = false
+                  }"> >> </a> </h4>
                   `,sp);
         break;
         case 2:
