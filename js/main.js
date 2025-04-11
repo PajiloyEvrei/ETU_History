@@ -649,7 +649,7 @@ function renderSlide(sp){
               <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block;">Техническое училище Почтово-телеграфного ведомства</h3>
               <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> (1886−1891)</h4> 
               <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 200px; height: 250px;" src="img/vojnarovskij.jpg">
-             Из-за короткого срока обучения и долгой практики, которую студенты проходили отдалённых местах. Защитили диполмный проект и выпустилось очень мало людей, но многие из них в будущем стали известными учёными и стали сами преподавать.<br> Так в 1889 году из первого выпуска были оставлены для подготовки к преподавательской деятельности П.С. Осадчий и В.А. Триумфов, а в 1890 году – П.Д. Войнаровский, что свидетельствует о высоком уровне подготовки уже первых выпускников Училища.</p>
+             Из-за короткого срока обучения и долгой практики, которую учащиеся проходили отдалённых местах. Защитили диполмный проект и выпустилось очень мало людей, но многие из них в будущем стали известными учёными и стали сами преподавать.<br> Так в 1889 году из первого выпуска были оставлены для подготовки к преподавательской деятельности П.С. Осадчий и В.А. Триумфов, а в 1890 году – П.Д. Войнаровский, что свидетельствует о высоком уровне подготовки уже первых выпускников Училища.</p>
               </div>
               <div id ="rightArrow" style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
               onclick = "if(clickCheck){setBarScale(1);clickCheck = false}"> >> </div>`,sp);
@@ -663,7 +663,7 @@ function renderSlide(sp){
                 <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Преобразование в институт</h3>
                 <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> </h4> 
                 <p class = "text" id = "MainText">
-                  11 (23) июня 1891 года император Александр III подписал указ о преобразовании Технического училища в Электротехнический института (ЭТИ) с четырехлетним сроком обучения. 
+                  11 (23) июня 1891 года император Александр III подписал указ о преобразовании Технического училища в Электротехнический институт (ЭТИ) с четырехлетним сроком обучения. 
                   Учебный план был расширен до 20 дисциплин, из которых 7 – электротехнические, в Институте преподавали три иностранных языка. 
                   <br>Директором ЭТИ был назначен Н.Г. Писаревский, а инспектором – А.А. Кракау. Учащиеся стали называться студентами. 
                   Число студентов на всех курсах института было установлено в 120 человек, причем их обучение было бесплатным.</p>
@@ -681,7 +681,7 @@ function renderSlide(sp){
             },2200);
             newSlide(`<div>
                   <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Новый директор</h3>
-                  <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> Техническое училище Почтово-телеграфного ведомства</h4> 
+                  <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> Электротехнический институт </h4> 
                   <p class = "text" id = "MainText"><img style="float: right;margin-left:10px; width: 250px; height: 300px;" src="img/kachalov.jpg">
                     В связи со смертью Писаревского в июне 1895 года, директором ЭТИ был назначен Н.Н. Качалов. В своей деятельности на посту директора ЭТИ он многое сделал для его развития, реализуя планы, определённые ещё его предшественником. 
                     <br> В конце 1897 года старшекурсники ЭТИ были впервые направлены в заграничную поездку для прохождения производственной практики, которая состоялась благодаря спонсорской поддержке фирмы «Сименс».
@@ -719,7 +719,7 @@ function renderSlide(sp){
       switch(slide){
         case 1:
           newSlide(`<div>
-                <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Переезд на Аптекарский остров</h3>
+                <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">Переезд на Аптекарьский остров</h3>
                 <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"> </h4> 
                 <p class = "text" id = "MainText">
                   Строительство институтского городка на Аптекарском острове стало важнейшим событием истории вуза в начале XX века. 
@@ -747,7 +747,7 @@ function renderSlide(sp){
           newSlide(`
                   <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;"></h3>
                   <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 40px; opacity: 0;  transition: opacity 2s;"> 
-                  Здание ВУЗа на тот момент
+                  Здания ВУЗа на тот момент
                    <br> <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
                   onclick = "if(clickCheck){setBarScale(2.5);clickCheck = false}"> Войти внутрь </a> </h4>
                   `,sp);
@@ -998,7 +998,7 @@ function renderSlide(sp){
           newSlide(`
                   <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;"></h3>
                   <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 40px; opacity: 0;  transition: opacity 2s;"> 
-                  После воостановления от войны.<br> ЛЭТИ начал серьзно расширяться
+                  После воcстановления от войны.<br> ЛЭТИ начал серьёзно расширяться
                   <br> <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
                   <br> <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
                   onclick = "                  if(clickCheck){
@@ -1077,7 +1077,7 @@ function renderSlide(sp){
           newSlide(`
                   <h3 class = "main hedline shadow" id = "MainHeadline" style = "display: inline-block;font-size: 100px; font-weight : 4px; opacity: 0; transition: opacity 2s;"></h3>
                   <h4 class = "main info shadow" id = "MainHeadinfo" style = "display: inline-block; font-size: 40px; opacity: 0;  transition: opacity 2s;"> 
-                  Здание ВУЗа на тот момент
+                  Здания ВУЗа на тот момент
                    <br> <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
                   onclick = "if(clickCheck){setBarScale(6.5);clickCheck = false}"> Войти внутрь </a> </h4>
                   `,sp);

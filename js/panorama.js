@@ -119,7 +119,7 @@ function setPanorama(panor){
           let r = imgData.data[off];
           let g = imgData.data[off+1];
           let b = imgData.data[off+2];
-          info.innerHTML = objects[`${r},${g},${b}`];
+          //info.innerHTML = objects[`${r},${g},${b}`];
           if (typeof(objects[`${r},${g},${b}`]) != "undefined" || typeof(things[objects[`${r},${g},${b}`]]) != "undefined"){
             document.getElementById('mainFrame').style.cursor = "pointer";
           }
