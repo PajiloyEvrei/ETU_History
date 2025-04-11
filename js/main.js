@@ -1234,10 +1234,10 @@ function renderSlide(sp){
               newSlide(`<div>
                     <h3 class = "main hedline" id = "MainHeadline" style = "display: inline-block; font-weight : 4px;">ЛЭТИ сейчас</h3><br>
                     <h4 class = "main info" id = "MainHeadinfo" style = "display: inline-block;"</h4> 
-                    <p class = "text" id = "MainText">
+                    <p class = "text" id = "MainText"><img style="margin-right:10px;float: right; width: 400px; height: 300px; position: relative; bottom: 30px"src="img/model now.png">
                     Санкт-Петербургский государственный электротехнический университет «ЛЭТИ» имеет давние контакты в области образования и научно-технического сотрудничества с университетами, научно-исследовательскими институтами и центрами, предприятиями и фирмами со всего мира. Более 50 предприятий высокотехнологичных областей промышленности являются стратегическими партнёрами ЛЭТИ. Среди зарубежных партнёров СПбГЭТУ 19 крупных промышленных предприятий, 8 научно-образовательных центров, 5 научно-исследовательских институтов, 85 университетов из 40 стран.
                     <br><br>На данный момент в ЛЭТИ обучается около 8000 студентов, аспирантов и слушателей. В университете работают 5 членов-корреспондентов РАН, 20 лауреатов национальных и международных наград, 200 профессоров и докторов наук. Ежегодно по основным образовательным программам вуз выпускает около 2000 специалистов. Подготовка бакалавров, магистров и специалистов осуществляется на 8 факультетах очной формы обучения. Подготовка бакалавров ведётся по 60 образовательным направлениям; подготовка магистров — по 53 образовательным программам; подготовка специалистов — по 4 направлениям. Подготовка кадров высшей научной квалификации осуществляется по 42 научным специальностям.</p>
-                <a style = "color: whitesmoke" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
+                <a style = "color: whitesmoke; text-align: center" onmouseover="this.style.color = 'rgb(150,150,150)';this.style.cursor = 'pointer'" onmouseout ="this.style.color = 'whitesmoke'" 
                   onclick = "if(clickCheck){setBarScale(8.5);clickCheck = false}"> Войти внутрь </a> 
                     </div>`,sp);
             setTimeout(function(){ document.getElementById("MainInfoDiv").style.zIndex = "-3"},1000);
